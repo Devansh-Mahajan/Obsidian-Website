@@ -1,19 +1,22 @@
 const changeTheme = (e: CustomEventMap["themechange"]) => {
   const theme = e.detail.theme
-  const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement
-  if (!iframe) {
+  const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement | null
+  if (!iframe || !iframe.contentWindow) {
     return
   }
 
-  if (!iframe.contentWindow) {
-    return
+  const themeName = getThemeName(theme)
+  const giscusContainer = document.querySelector(".giscus") as GiscusElement | null
+  if (giscusContainer) {
+    giscusContainer.dataset.theme = themeName
+    giscusContainer.setAttribute("data-theme", themeName)
   }
 
   iframe.contentWindow.postMessage(
     {
       giscus: {
         setConfig: {
-          theme: getThemeUrl(getThemeName(theme)),
+          theme: getThemeUrl(themeName),
         },
       },
     },
@@ -25,7 +28,7 @@ const getThemeName = (theme: string) => {
   if (theme !== "dark" && theme !== "light") {
     return theme
   }
-  const giscusContainer = document.querySelector(".giscus") as GiscusElement
+  const giscusContainer = document.querySelector(".giscus") as GiscusElement | null
   if (!giscusContainer) {
     return theme
   }
@@ -35,7 +38,7 @@ const getThemeName = (theme: string) => {
 }
 
 const getThemeUrl = (theme: string) => {
-  const giscusContainer = document.querySelector(".giscus") as GiscusElement
+  const giscusContainer = document.querySelector(".giscus") as GiscusElement | null
   if (!giscusContainer) {
     return `https://giscus.app/themes/${theme}.css`
   }
@@ -51,6 +54,7 @@ type GiscusElement = Omit<HTMLElement, "dataset"> & {
     themeUrl: string
     lightTheme: string
     darkTheme: string
+    theme?: string
     mapping: "url" | "title" | "og:title" | "specific" | "number" | "pathname"
     strict: string
     reactionsEnabled: string
@@ -60,7 +64,7 @@ type GiscusElement = Omit<HTMLElement, "dataset"> & {
 }
 
 document.addEventListener("nav", () => {
-  const giscusContainer = document.querySelector(".giscus") as GiscusElement
+  const giscusContainer = document.querySelector(".giscus") as GiscusElement | null
   if (!giscusContainer) {
     return
   }
@@ -91,8 +95,10 @@ document.addEventListener("nav", () => {
         : prefersLight
           ? "light"
           : "dark"
-  giscusContainer.setAttribute("data-theme", theme)
-  giscusScript.setAttribute("data-theme", getThemeUrl(getThemeName(theme)))
+  const themeName = getThemeName(theme)
+  giscusContainer.dataset.theme = themeName
+  giscusContainer.setAttribute("data-theme", themeName)
+  giscusScript.setAttribute("data-theme", getThemeUrl(themeName))
 
   giscusContainer.appendChild(giscusScript)
 
