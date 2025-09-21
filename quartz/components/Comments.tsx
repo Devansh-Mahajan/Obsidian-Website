@@ -3,7 +3,7 @@ import { classNames } from "../util/lang"
 // @ts-ignore
 import script from "./scripts/comments.inline"
 
-const Comments: QuartzComponent = ({ displayClass, fileData }: QuartzComponentProps) => {
+const Comments: QuartzComponent = ({ displayClass, fileData, cfg }: QuartzComponentProps) => {
   // Allow per-page opt-out via frontmatter
   const disableComment: boolean =
     typeof fileData.frontmatter?.comments !== "undefined" &&
@@ -12,6 +12,21 @@ const Comments: QuartzComponent = ({ displayClass, fileData }: QuartzComponentPr
   if (disableComment) {
     return <></>
   }
+
+  const themeUrl = (() => {
+    if (!cfg.baseUrl) {
+      return "https://giscus.app/themes"
+    }
+
+    const withProtocol = cfg.baseUrl.startsWith("http") ? cfg.baseUrl : `https://${cfg.baseUrl}`
+    try {
+      const normalizedBase = withProtocol.endsWith("/") ? withProtocol : `${withProtocol}/`
+      const resolved = new URL("./static/giscus", normalizedBase)
+      return resolved.toString().replace(/\/+$/, "")
+    } catch {
+      return `${withProtocol.replace(/\/+$/, "")}/static/giscus`
+    }
+  })()
 
   return (
     <section
@@ -24,7 +39,7 @@ const Comments: QuartzComponent = ({ displayClass, fileData }: QuartzComponentPr
       data-strict="0"
       data-reactions-enabled="1"
       data-input-position="bottom"
-      data-theme-url="https://giscus.app/themes"
+      data-theme-url={themeUrl}
       data-light-theme="light"
       data-dark-theme="dark"
       data-lang="en"

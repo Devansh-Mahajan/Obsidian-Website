@@ -34,56 +34,56 @@ main {
   --color-prettylights-syntax-brackethighlighter-angle: #8b949e;
   --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58;
   --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
-  --color-btn-text: #d4d4d4; /* --darkgray */
-  --color-btn-bg: #161618; /* --light */
-  --color-btn-border: rgb(240, 246, 252 / 10%); /* --dark */
+  --color-btn-text: #e0e0e0; /* --darkgray */
+  --color-btn-bg: #1a1a1a; /* --light */
+  --color-btn-border: rgb(255 255 255 / 10%); /* --dark */
   --color-btn-shadow: 0 0 transparent;
   --color-btn-inset-shadow: 0 0 transparent;
-  --color-btn-hover-bg: #30363d;
-  --color-btn-hover-border: #8b949e;
-  --color-btn-active-bg: hsl(212deg 12% 18% / 100%);
-  --color-btn-active-border: #6e7681;
-  --color-btn-selected-bg: #161b22;
+  --color-btn-hover-bg: #2d2d2d; /* --lightgray */
+  --color-btn-hover-border: #e0e0e0; /* --darkgray */
+  --color-btn-active-bg: #262626;
+  --color-btn-active-border: #cfcfcf;
+  --color-btn-selected-bg: #2d2d2d; /* --lightgray */
   --color-btn-primary-text: #fff;
-  --color-btn-primary-bg: #84a59d; /* --tertiary */
-  --color-btn-primary-border: rgb(240, 246, 252 / 10%); /* --dark */
+  --color-btn-primary-bg: #ffa726; /* --tertiary */
+  --color-btn-primary-border: rgb(255 255 255 / 10%); /* --dark */
   --color-btn-primary-shadow: 0 0 transparent;
   --color-btn-primary-inset-shadow: 0 0 transparent;
-  --color-btn-primary-hover-bg: #7b97aa; /* --secondary */
-  --color-btn-primary-hover-border: rgb(240, 246, 252 / 10%); /* --dark */
-  --color-btn-primary-selected-bg: #7b97aa; /* --secondary */
-  --color-btn-primary-selected-shadow: 0 0 transparent;
-  --color-btn-primary-disabled-text: rgba(33, 32, 32, 0.5);
-  --color-btn-primary-disabled-bg: rgb(35 134 54 / 60%);
-  --color-btn-primary-disabled-border: rgb(240 246 252 / 10%);
-  --color-action-list-item-default-hover-bg: rgb(177 186 196 / 12%);
-  --color-segmented-control-bg: rgb(110 118 129 / 10%);
-  --color-segmented-control-button-bg: #0d1117;
-  --color-segmented-control-button-selected-border: #6e7681;
-  --color-fg-default: #ebebec; /* --dark */
-  --color-fg-muted: #d4d4d4; /* --darkgray */
-  --color-fg-subtle: #d4d4d4; /* --darkgray */
-  --color-canvas-default: #0d1117;
-  --color-canvas-overlay: #161b22;
-  --color-canvas-inset: #010409;
-  --color-canvas-subtle: #161b22;
-  --color-border-default: #30363d;
-  --color-border-muted: #21262d;
-  --color-neutral-muted: rgb(110 118 129 / 40%);
-  --color-accent-fg: #2f81f7;
-  --color-accent-emphasis: #1f6feb;
-  --color-accent-muted: rgb(56 139 253 / 40%);
-  --color-accent-subtle: rgb(56 139 253 / 10%);
+  --color-btn-primary-hover-bg: #ff6b6b; /* --secondary */
+  --color-btn-primary-hover-border: rgb(255 255 255 / 10%); /* --dark */
+  --color-btn-primary-selected-bg: #ff6b6b; /* --secondary */
+  --color-btn-primary-selected-shadow: inset 0 1px 0 rgb(0 0 0 / 25%);
+  --color-btn-primary-disabled-text: rgba(255, 255, 255, 0.5);
+  --color-btn-primary-disabled-bg: rgba(255, 167, 38, 0.35);
+  --color-btn-primary-disabled-border: rgb(255 255 255 / 10%);
+  --color-action-list-item-default-hover-bg: rgb(64 64 64 / 40%);
+  --color-segmented-control-bg: rgb(64 64 64 / 40%);
+  --color-segmented-control-button-bg: #1a1a1a;
+  --color-segmented-control-button-selected-border: #e0e0e0;
+  --color-fg-default: #ffffff; /* --dark */
+  --color-fg-muted: #e0e0e0; /* --darkgray */
+  --color-fg-subtle: #e0e0e0; /* --darkgray */
+  --color-canvas-default: #1a1a1a; /* --light */
+  --color-canvas-overlay: #2d2d2d; /* --lightgray */
+  --color-canvas-inset: #121212;
+  --color-canvas-subtle: #2d2d2d; /* --lightgray */
+  --color-border-default: #404040; /* --gray */
+  --color-border-muted: #2d2d2d; /* --lightgray */
+  --color-neutral-muted: rgb(224 224 224 / 16%);
+  --color-accent-fg: #ff6b6b; /* --secondary */
+  --color-accent-emphasis: #ff6b6b; /* --secondary */
+  --color-accent-muted: rgb(255 107 107 / 40%);
+  --color-accent-subtle: rgba(255, 107, 107, 0.15);
   --color-success-fg: #3fb950;
-  --color-attention-fg: #d29922;
-  --color-attention-muted: rgb(187 128 9 / 40%);
-  --color-attention-subtle: rgb(187 128 9 / 15%);
-  --color-danger-fg: #f85149;
-  --color-danger-muted: rgb(248 81 73 / 40%);
-  --color-danger-subtle: rgb(248 81 73 / 10%);
+  --color-attention-fg: #ffa726; /* --tertiary */
+  --color-attention-muted: rgb(255 167 38 / 40%);
+  --color-attention-subtle: rgba(255, 167, 38, 0.2);
+  --color-danger-fg: #ff6b6b; /* --secondary */
+  --color-danger-muted: rgb(255 107 107 / 40%);
+  --color-danger-subtle: rgba(255, 107, 107, 0.15);
   --color-primer-shadow-inset: 0 0 transparent;
-  --color-scale-gray-7: #21262d;
-  --color-scale-blue-8: #0c2d6b;
+  --color-scale-gray-7: #2d2d2d;
+  --color-scale-blue-8: #4a1f17;
 
   /*! Extensions from @primer/css/alerts/flash.scss */
   --color-social-reaction-bg-hover: var(--color-scale-gray-7);
