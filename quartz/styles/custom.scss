@@ -1,6 +1,55 @@
 @use "./base.scss";
 @use "./variables.scss" as *;
 
+// Layout refinements shared across viewports
+.page > #quartz-body .center {
+  min-width: 0;
+}
+
+.page > #quartz-body .center > article {
+  width: min(100%, 72ch);
+  margin-inline: auto;
+}
+
+.giscus {
+  width: min(100%, 72ch);
+  margin: clamp(2.5rem, 7vw, 3.5rem) auto 0;
+  padding: clamp(1.5rem, 5vw, 2rem) clamp(1.25rem, 5vw, 2.25rem);
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, var(--gray) 42%, transparent);
+  background: color-mix(in srgb, var(--light) 92%, transparent);
+  box-shadow: 0 22px 50px -32px color-mix(in srgb, var(--dark) 18%, transparent);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+:root[saved-theme="dark"] .giscus {
+  border-color: color-mix(in srgb, var(--gray) 55%, transparent);
+  background: color-mix(in srgb, var(--light) 75%, rgba(255, 255, 255, 0.04));
+  box-shadow: 0 22px 50px -34px color-mix(in srgb, var(--dark) 45%, transparent);
+}
+
+.giscus iframe {
+  width: 100% !important;
+}
+
+@media all and ($tablet) {
+  .page > #quartz-body {
+    padding-inline: clamp(1rem, 4vw, 2rem);
+    row-gap: clamp(1.5rem, 5vw, 2.5rem);
+  }
+
+  .page > #quartz-body .center > article {
+    padding-inline: clamp(0.75rem, 3vw, 1.5rem);
+  }
+
+  .giscus {
+    margin-top: clamp(2rem, 6vw, 3rem);
+  }
+}
+
 // Responsive polish for narrower viewports
 @media all and ($mobile) {
   .page > #quartz-body {
@@ -58,6 +107,11 @@
 
   .page > #quartz-body .center > article {
     padding-inline: clamp(0.25rem, 3vw, 0.75rem);
+  }
+
+  .giscus {
+    margin-top: clamp(2rem, 8vw, 3rem);
+    padding: clamp(1.25rem, 6vw, 1.75rem) clamp(1rem, 6vw, 1.5rem);
   }
 
   footer {

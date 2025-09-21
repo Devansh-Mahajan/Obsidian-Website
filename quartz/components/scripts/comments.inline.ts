@@ -81,8 +81,16 @@ document.addEventListener("nav", () => {
   giscusScript.setAttribute("data-input-position", giscusContainer.dataset.inputPosition)
   giscusScript.setAttribute("data-lang", giscusContainer.dataset.lang)
   const storedTheme = localStorage.getItem("theme")
+  const savedTheme = document.documentElement.getAttribute("saved-theme")
   const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches
-  const theme = storedTheme ?? (prefersLight ? "light" : "dark")
+  const theme =
+    savedTheme === "light" || savedTheme === "dark"
+      ? savedTheme
+      : storedTheme === "light" || storedTheme === "dark"
+        ? storedTheme
+        : prefersLight
+          ? "light"
+          : "dark"
   giscusContainer.setAttribute("data-theme", theme)
   giscusScript.setAttribute("data-theme", getThemeUrl(getThemeName(theme)))
 
