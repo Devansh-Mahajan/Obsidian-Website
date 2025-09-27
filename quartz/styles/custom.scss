@@ -39,20 +39,17 @@ h6,
   color: #689d6a !important; /* Gruvbox aqua */
 }
 
-// Gruvbox text emphasis and styling
-strong,
-.page article strong,
-.page article p > strong {
+// Gruvbox text emphasis and styling - only for regular content, not callouts
+.page article strong:not(.callout strong),
+.page article p > strong:not(.callout strong) {
   color: #d79921 !important; /* Gruvbox yellow */
   font-weight: 600 !important;
 }
 
-em,
-i,
-.page article em,
-.page article i,
-.page article p > em,
-.page article p > i {
+.page article em:not(.callout em),
+.page article i:not(.callout i),
+.page article p > em:not(.callout em),
+.page article p > i:not(.callout i) {
   color: #d79921 !important; /* Gruvbox yellow */
   font-style: italic !important;
 }
@@ -72,8 +69,8 @@ a.external:hover {
   color: #98971a !important; /* Gruvbox green */
 }
 
-// Code styling with Gruvbox
-code:not(pre code) {
+// Code styling with Gruvbox - only for regular content, not callouts
+.page article code:not(pre code):not(.callout code) {
   background-color: #ebdbb2 !important; /* Gruvbox light1 */
   color: #458588 !important; /* Gruvbox blue */
   padding: 0.1em 0.3em !important;
@@ -81,9 +78,7 @@ code:not(pre code) {
   font-family: var(--codeFont) !important;
 }
 
-pre,
-pre code,
-.page article pre {
+.page article pre:not(.callout pre) {
   background-color: #ebdbb2 !important; /* Gruvbox light1 */
   color: #3c3836 !important; /* Gruvbox dark1 */
   border-radius: 4px !important;
@@ -91,9 +86,8 @@ pre code,
   font-family: var(--codeFont) !important;
 }
 
-// Blockquotes with Gruvbox styling
-blockquote,
-.page article blockquote {
+// Blockquotes with Gruvbox styling - only for regular content, not callouts
+.page article blockquote:not(.callout) {
   border-left: 3px solid #cc241d !important; /* Gruvbox red */
   background-color: #ebdbb2 !important; /* Gruvbox light1 */
   color: #3c3836 !important; /* Gruvbox dark1 */
