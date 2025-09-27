@@ -119,171 +119,171 @@ a.external:hover {
 }
 
 .callout {
-  --callout-color: var(--callout-default);
-  overflow: hidden;
-  border-style: solid;
-  border-color: rgba(var(--callout-color), var(--callout-border-opacity));
-  border-width: var(--callout-border-width);
-  border-radius: 4px;
-  margin: 1em 0;
-  padding: 12px 12px 12px 24px;
-  background-color: rgba(var(--callout-color), 0.2);
+  --callout-color: var(--callout-default) !important;
+  overflow: hidden !important;
+  border-style: solid !important;
+  border-color: rgba(var(--callout-color), var(--callout-border-opacity)) !important;
+  border-width: var(--callout-border-width) !important;
+  border-radius: 4px !important;
+  margin: 1em 0 !important;
+  padding: 12px 12px 12px 24px !important;
+  background-color: rgba(var(--callout-color), 0.2) !important;
 
   &[data-callout] {
-    --callout-color: var(--callout-default);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-default) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="abstract"] {
-    --callout-color: var(--callout-summary);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-summary) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="summary"] {
-    --callout-color: var(--callout-summary);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-summary) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="tldr"] {
-    --callout-color: var(--callout-summary);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-summary) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="info"] {
-    --callout-color: var(--callout-info);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-info) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="todo"] {
-    --callout-color: var(--callout-todo);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-todo) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="important"] {
-    --callout-color: var(--callout-important);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-important) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="tip"] {
-    --callout-color: var(--callout-tip);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-tip) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="hint"] {
-    --callout-color: var(--callout-tip);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-tip) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="success"] {
-    --callout-color: var(--callout-success);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-success) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="check"] {
-    --callout-color: var(--callout-success);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-success) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="done"] {
-    --callout-color: var(--callout-success);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-success) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="question"] {
-    --callout-color: var(--callout-question);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-question) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="help"] {
-    --callout-color: var(--callout-question);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-question) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="faq"] {
-    --callout-color: var(--callout-question);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-question) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="warning"] {
-    --callout-color: var(--callout-warning);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-warning) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="caution"] {
-    --callout-color: var(--callout-warning);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-warning) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="attention"] {
-    --callout-color: var(--callout-warning);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-warning) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="failure"] {
-    --callout-color: var(--callout-fail);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-fail) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="fail"] {
-    --callout-color: var(--callout-fail);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-fail) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="missing"] {
-    --callout-color: var(--callout-fail);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-fail) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="danger"] {
-    --callout-color: var(--callout-error);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-error) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="error"] {
-    --callout-color: var(--callout-error);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-error) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="bug"] {
-    --callout-color: var(--callout-bug);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-bug) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="example"] {
-    --callout-color: var(--callout-example);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-example) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="quote"] {
-    --callout-color: var(--callout-quote);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-quote) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
   
   &[data-callout="cite"] {
-    --callout-color: var(--callout-quote);
-    background-color: rgba(var(--callout-color), 0.2);
+    --callout-color: var(--callout-quote) !important;
+    background-color: rgba(var(--callout-color), 0.2) !important;
   }
 }
 
 .callout-title {
-  padding: 0;
-  display: flex;
-  gap: 4px;
-  font-size: inherit;
-  color: rgb(var(--callout-color));
-  line-height: 1.3;
-  align-items: flex-start;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  padding: 0 !important;
+  display: flex !important;
+  gap: 4px !important;
+  font-size: inherit !important;
+  color: rgb(var(--callout-color)) !important;
+  line-height: 1.3 !important;
+  align-items: flex-start !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
 
   & > .callout-title-inner > p {
-    font-weight: 600;
-    color: inherit;
+    font-weight: 600 !important;
+    color: inherit !important;
   }
 
   .callout-title-inner {
-    font-weight: 600;
-    color: inherit;
+    font-weight: 600 !important;
+    color: inherit !important;
   }
 }
 
@@ -291,79 +291,6 @@ a.external:hover {
   overflow-x: auto;
   padding: 0;
   background-color: transparent;
-}
-
-// Callout content styling
-.callout-content {
-  line-height: 1.6 !important;
-}
-
-.callout-content p {
-  margin-bottom: 0.75rem !important;
-}
-
-.callout-content p:last-child {
-  margin-bottom: 0 !important;
-}
-
-// Code within callouts - subtle styling
-.callout code {
-  background-color: rgba(60, 56, 54, 0.1) !important;
-  color: #665c54 !important;
-  padding: 0.2em 0.4em !important;
-  border-radius: 3px !important;
-  font-size: 0.9em !important;
-}
-
-// Links within callouts
-.callout a {
-  color: inherit !important;
-  text-decoration: underline !important;
-  text-decoration-color: rgba(60, 56, 54, 0.3) !important;
-  transition: text-decoration-color 0.2s ease !important;
-}
-
-.callout a:hover {
-  text-decoration-color: rgba(60, 56, 54, 0.6) !important;
-}
-
-// Lists within callouts
-.callout ul,
-.callout ol {
-  padding-left: 1.5rem !important;
-}
-
-.callout li {
-  margin-bottom: 0.25rem !important;
-}
-
-// Dark mode callout adjustments - maintaining warm professional theme
-@media (prefers-color-scheme: dark) {
-  .callout {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
-    background: var(--light) !important; /* Use theme dark background */
-  }
-  
-  .callout:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
-  }
-  
-  // All callouts use the same warm dark background with colored borders
-  .callout[data-callout="note"],
-  .callout[data-callout="info"],
-  .callout[data-callout="tip"],
-  .callout[data-callout="warning"],
-  .callout[data-callout="danger"],
-  .callout[data-callout="error"],
-  .callout[data-callout="success"] {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
-    color: #e0e0e0 !important;
-  }
-  
-  .callout code {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    color: #e0e0e0 !important;
-  }
 }
 
 // put your custom CSS here!
