@@ -90,9 +90,11 @@ a.external:hover {
 .page article blockquote:not(.callout) {
   border-left: 3px solid #cc241d !important; /* Gruvbox red */
   color: #3c3836 !important; /* Gruvbox dark1 */
+  background-color: #ebdbb2 !important; /* Gruvbox light1 background */
   padding: 1rem 1.5rem !important;
   margin: 1.5rem 0 !important;
   font-style: italic !important;
+  border-radius: 4px !important;
 }
 
 // Obsidian Gruvbox Callouts - Exact Implementation
