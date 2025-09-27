@@ -38,6 +38,7 @@
   --link-color: #cc241d;
   --link-hover: #b8bb26;
   --link-muted: #928374;
+  --inline-title-color: var(--heading-1);
 
   --inline-code-bg: #f2e5bc;
   --inline-code-text: #3c3836;
@@ -67,6 +68,7 @@
   --block-code-text: #3c3836;
   --blockquote-bg: rgba(235, 219, 178, 0.55);
   --table-stripe: rgba(235, 219, 178, 0.6);
+  --inline-title-color: var(--heading-1);
 }
 
 :root[saved-theme="dark"] {
@@ -88,6 +90,7 @@
   --block-code-text: #ebdbb2;
   --blockquote-bg: rgba(40, 40, 40, 0.72);
   --table-stripe: rgba(60, 56, 54, 0.55);
+  --inline-title-color: var(--heading-1);
 }
 
 body {
