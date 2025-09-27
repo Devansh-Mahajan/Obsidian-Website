@@ -125,44 +125,44 @@ a.external:hover {
   gap: 0.5rem !important;
 }
 
-// Professional warm color palette using color wheel harmony
-// All colors are warm-toned and complementary to Gruvbox theme
+// Authentic Gruvbox callouts - using only Gruvbox colors
+// Subtle warm backgrounds that match the white theme
 
 .callout[data-callout="note"] {
-  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
-  border-left-color: #d79921 !important; /* Gruvbox yellow-orange */
-  color: #3c3836 !important;
+  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
+  border-left-color: #d79921 !important; /* Gruvbox yellow */
+  color: #3c3836 !important; /* Gruvbox dark1 */
 }
 
 .callout[data-callout="info"] {
-  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
-  border-left-color: #b16286 !important; /* Gruvbox purple - warm violet */
-  color: #3c3836 !important;
+  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
+  border-left-color: #458588 !important; /* Gruvbox blue */
+  color: #3c3836 !important; /* Gruvbox dark1 */
 }
 
 .callout[data-callout="tip"] {
-  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
-  border-left-color: #98971a !important; /* Gruvbox green - warm olive */
-  color: #3c3836 !important;
+  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
+  border-left-color: #98971a !important; /* Gruvbox green */
+  color: #3c3836 !important; /* Gruvbox dark1 */
 }
 
 .callout[data-callout="warning"] {
-  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
-  border-left-color: #d79921 !important; /* Gruvbox yellow - warm amber */
-  color: #3c3836 !important;
+  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
+  border-left-color: #d79921 !important; /* Gruvbox yellow */
+  color: #3c3836 !important; /* Gruvbox dark1 */
 }
 
 .callout[data-callout="danger"],
 .callout[data-callout="error"] {
-  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
-  border-left-color: #cc241d !important; /* Gruvbox red - warm crimson */
-  color: #3c3836 !important;
+  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
+  border-left-color: #cc241d !important; /* Gruvbox red */
+  color: #3c3836 !important; /* Gruvbox dark1 */
 }
 
 .callout[data-callout="success"] {
-  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
-  border-left-color: #689d6a !important; /* Gruvbox aqua - warm teal */
-  color: #3c3836 !important;
+  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
+  border-left-color: #689d6a !important; /* Gruvbox aqua */
+  color: #3c3836 !important; /* Gruvbox dark1 */
 }
 
 // Callout content styling
