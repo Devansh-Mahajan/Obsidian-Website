@@ -95,74 +95,107 @@ a.external:hover {
   font-style: italic !important;
 }
 
-// Professional Warm Gruvbox Callouts
-// ===================================
+// Clean Minimal Callouts - Matching the Reference Image
+// ======================================================
 
-// Callout containers with warm, professional styling
+// Base callout styling - clean and minimal
 .callout {
-  border-radius: 6px !important;
-  padding: 1.5rem !important;
-  margin: 1.5rem 0 !important;
-  border-left: 4px solid !important;
-  position: relative !important;
-  box-shadow: 0 2px 6px rgba(60, 56, 54, 0.06) !important;
-  transition: all 0.2s ease !important;
-  background: var(--light) !important; /* Use theme background */
+  border-radius: 8px !important;
+  padding: 1rem 1.25rem !important;
+  margin: 1rem 0 !important;
+  border-left: 3px solid !important;
+  background: rgba(255, 255, 255, 0.8) !important; /* Very subtle white tint */
+  border: 1px solid rgba(0, 0, 0, 0.08) !important; /* Subtle border */
+  box-shadow: none !important; /* No shadows */
 }
 
-// Hover effect for better interactivity
-.callout:hover {
-  box-shadow: 0 4px 10px rgba(60, 56, 54, 0.1) !important;
-  transform: translateY(-1px) !important;
-}
-
-// Callout title styling with proper hierarchy
+// Callout title styling
 .callout-title {
-  font-weight: 600 !important;
-  margin-bottom: 0.75rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
   display: flex !important;
   align-items: center !important;
   gap: 0.5rem !important;
 }
 
-// Authentic Gruvbox callouts - using only Gruvbox colors
-// Subtle warm backgrounds that match the white theme
-
+// Individual callout types with subtle color tints
 .callout[data-callout="note"] {
-  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
-  border-left-color: #d79921 !important; /* Gruvbox yellow */
-  color: #3c3836 !important; /* Gruvbox dark1 */
+  background: rgba(72, 133, 136, 0.05) !important; /* Very light blue tint */
+  border-left-color: #458588 !important; /* Gruvbox blue */
+  border-color: rgba(72, 133, 136, 0.15) !important;
 }
 
 .callout[data-callout="info"] {
-  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
+  background: rgba(72, 133, 136, 0.05) !important; /* Very light blue tint */
   border-left-color: #458588 !important; /* Gruvbox blue */
-  color: #3c3836 !important; /* Gruvbox dark1 */
+  border-color: rgba(72, 133, 136, 0.15) !important;
 }
 
 .callout[data-callout="tip"] {
-  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
+  background: rgba(152, 151, 26, 0.05) !important; /* Very light green tint */
   border-left-color: #98971a !important; /* Gruvbox green */
-  color: #3c3836 !important; /* Gruvbox dark1 */
+  border-color: rgba(152, 151, 26, 0.15) !important;
+}
+
+.callout[data-callout="success"] {
+  background: rgba(152, 151, 26, 0.05) !important; /* Very light green tint */
+  border-left-color: #98971a !important; /* Gruvbox green */
+  border-color: rgba(152, 151, 26, 0.15) !important;
 }
 
 .callout[data-callout="warning"] {
-  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
+  background: rgba(215, 153, 33, 0.05) !important; /* Very light orange tint */
   border-left-color: #d79921 !important; /* Gruvbox yellow */
-  color: #3c3836 !important; /* Gruvbox dark1 */
+  border-color: rgba(215, 153, 33, 0.15) !important;
 }
 
 .callout[data-callout="danger"],
 .callout[data-callout="error"] {
-  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
+  background: rgba(204, 36, 29, 0.05) !important; /* Very light red tint */
   border-left-color: #cc241d !important; /* Gruvbox red */
-  color: #3c3836 !important; /* Gruvbox dark1 */
+  border-color: rgba(204, 36, 29, 0.15) !important;
 }
 
-.callout[data-callout="success"] {
-  background: #fbf1c7 !important; /* Gruvbox light1 - warm cream */
-  border-left-color: #689d6a !important; /* Gruvbox aqua */
-  color: #3c3836 !important; /* Gruvbox dark1 */
+.callout[data-callout="question"] {
+  background: rgba(215, 153, 33, 0.05) !important; /* Very light orange tint */
+  border-left-color: #d79921 !important; /* Gruvbox yellow */
+  border-color: rgba(215, 153, 33, 0.15) !important;
+}
+
+.callout[data-callout="abstract"] {
+  background: rgba(152, 151, 26, 0.05) !important; /* Very light green tint */
+  border-left-color: #98971a !important; /* Gruvbox green */
+  border-color: rgba(152, 151, 26, 0.15) !important;
+}
+
+.callout[data-callout="todo"] {
+  background: rgba(152, 151, 26, 0.05) !important; /* Very light green tint */
+  border-left-color: #98971a !important; /* Gruvbox green */
+  border-color: rgba(152, 151, 26, 0.15) !important;
+}
+
+.callout[data-callout="failure"] {
+  background: rgba(204, 36, 29, 0.05) !important; /* Very light red tint */
+  border-left-color: #cc241d !important; /* Gruvbox red */
+  border-color: rgba(204, 36, 29, 0.15) !important;
+}
+
+.callout[data-callout="bug"] {
+  background: rgba(204, 36, 29, 0.05) !important; /* Very light red tint */
+  border-left-color: #cc241d !important; /* Gruvbox red */
+  border-color: rgba(204, 36, 29, 0.15) !important;
+}
+
+.callout[data-callout="example"] {
+  background: rgba(124, 111, 100, 0.05) !important; /* Very light gray tint */
+  border-left-color: #7c6f64 !important; /* Gruvbox gray */
+  border-color: rgba(124, 111, 100, 0.15) !important;
+}
+
+.callout[data-callout="quote"] {
+  background: rgba(124, 111, 100, 0.05) !important; /* Very light gray tint */
+  border-left-color: #7c6f64 !important; /* Gruvbox gray */
+  border-color: rgba(124, 111, 100, 0.15) !important;
 }
 
 // Callout content styling
