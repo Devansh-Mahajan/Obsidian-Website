@@ -95,6 +95,19 @@ a.external:hover {
   margin: 1.5rem 0 !important;
   font-style: italic !important;
   border-radius: 4px !important;
+
+  // Quote symbol styling
+  &::before {
+    color: #cc241d !important; /* Gruvbox red for quote symbol */
+    content: "" !important;
+  }
+
+  // Any quote icons or symbols within blockquotes
+  .quote-icon,
+  .quote-symbol,
+  [data-quote-icon] {
+    color: #cc241d !important; /* Gruvbox red */
+  }
 }
 
 // Obsidian Gruvbox Callouts - Exact Implementation
