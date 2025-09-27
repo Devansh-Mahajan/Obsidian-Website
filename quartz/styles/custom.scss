@@ -1,303 +1,362 @@
 @use "./base.scss";
 
-// Gruvbox Text Colors Only
-// =========================
+// Gruvbox-inspired theme variables
+:root {
+  --bodyFont:
+    "Inter", "Avenir", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    Arial, sans-serif;
+  --headerFont:
+    "Avenir", "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    Arial, sans-serif;
+  --codeFont:
+    "Source Code Pro", "Fira Code", "SFMono-Regular", Menlo, Monaco, "Courier New", monospace;
 
-// Heading colors from Gruvbox
-h1,
+  --callout-border-width: 1px;
+  --callout-border-opacity: 0.28;
+  --callout-default: 69, 133, 136;
+  --callout-summary: 104, 157, 106;
+  --callout-info: 69, 133, 136;
+  --callout-todo: 69, 133, 136;
+  --callout-important: 215, 153, 33;
+  --callout-tip: 142, 192, 124;
+  --callout-success: 152, 151, 26;
+  --callout-question: 215, 153, 33;
+  --callout-warning: 214, 93, 14;
+  --callout-fail: 204, 36, 29;
+  --callout-error: 204, 36, 29;
+  --callout-bug: 204, 36, 29;
+  --callout-example: 177, 98, 134;
+  --callout-quote: 146, 131, 116;
+
+  --heading-1: #cc241d;
+  --heading-2: #d79921;
+  --heading-3: #98971a;
+  --heading-4: #689d6a;
+  --heading-5: #458588;
+  --heading-6: #b16286;
+
+  --link-color: #d65d0e;
+  --link-hover: #8ec07c;
+  --link-muted: #928374;
+
+  --inline-code-bg: #f2e5bc;
+  --inline-code-text: #3c3836;
+  --block-code-bg: #ebdbb2;
+  --block-code-text: #3c3836;
+  --blockquote-border: #928374;
+  --blockquote-bg: rgba(146, 131, 116, 0.18);
+  --table-stripe: rgba(146, 131, 116, 0.1);
+}
+
+:root[saved-theme="light"] {
+  color-scheme: light;
+
+  --light: #fbf1c7;
+  --lightgray: #e0cfa9;
+  --gray: #d5c4a1;
+  --darkgray: #3c3836;
+  --dark: #1d2021;
+  --secondary: #cc241d;
+  --tertiary: #98971a;
+  --highlight: rgba(204, 36, 29, 0.18);
+  --textHighlight: rgba(250, 189, 47, 0.35);
+
+  --inline-code-bg: #f2e5bc;
+  --inline-code-text: #3c3836;
+  --block-code-bg: #ebdbb2;
+  --block-code-text: #3c3836;
+  --blockquote-bg: rgba(235, 219, 178, 0.55);
+  --table-stripe: rgba(235, 219, 178, 0.6);
+}
+
+:root[saved-theme="dark"] {
+  color-scheme: dark;
+
+  --light: #1d2021;
+  --lightgray: #3c3836;
+  --gray: #928374;
+  --darkgray: #ebdbb2;
+  --dark: #fbf1c7;
+  --secondary: #fe8019;
+  --tertiary: #b8bb26;
+  --highlight: rgba(254, 128, 25, 0.22);
+  --textHighlight: rgba(250, 189, 47, 0.35);
+
+  --inline-code-bg: #32302f;
+  --inline-code-text: #ebdbb2;
+  --block-code-bg: #282828;
+  --block-code-text: #ebdbb2;
+  --blockquote-bg: rgba(40, 40, 40, 0.72);
+  --table-stripe: rgba(60, 56, 54, 0.55);
+}
+
+body {
+  background-color: var(--light);
+  color: var(--darkgray);
+  font-family: var(--bodyFont);
+  line-height: 1.6;
+}
+
 .page-title,
-.article-title,
-header h1,
-.page article h1 {
-  color: #cc241d !important; /* Gruvbox red */
+.page-title a,
+.page article h1,
+.page article h1 a,
+header h1 {
+  color: var(--heading-1);
 }
 
-h2,
-header h2,
-.page article h2 {
-  color: #98971a !important; /* Gruvbox green */
+.page article h2,
+.page article h2 a,
+header h2 {
+  color: var(--heading-2);
 }
 
-h3,
-header h3,
-.page article h3 {
-  color: #d79921 !important; /* Gruvbox yellow */
+.page article h3,
+.page article h3 a,
+header h3 {
+  color: var(--heading-3);
 }
 
-h4,
-.page article h4 {
-  color: #458588 !important; /* Gruvbox aqua */
+.page article h4,
+header h4 {
+  color: var(--heading-4);
 }
 
-h5,
-.page article h5 {
-  color: #b16286 !important; /* Gruvbox purple */
+.page article h5,
+header h5 {
+  color: var(--heading-5);
 }
 
-h6,
-.page article h6 {
-  color: #689d6a !important; /* Gruvbox aqua */
+.page article h6,
+header h6 {
+  color: var(--heading-6);
 }
 
-// Gruvbox text emphasis and styling - only for regular content, not callouts
-.page article strong:not(.callout strong),
-.page article p > strong:not(.callout strong) {
-  color: #d79921 !important; /* Gruvbox yellow */
-  font-weight: 600 !important;
+.page article strong,
+.page article p > strong {
+  color: var(--heading-2);
+  font-weight: 600;
 }
 
-.page article em:not(.callout em),
-.page article i:not(.callout i),
-.page article p > em:not(.callout em),
-.page article p > i:not(.callout i) {
-  color: #d79921 !important; /* Gruvbox yellow */
-  font-style: italic !important;
+.page article em,
+.page article i,
+.page article p > em,
+.page article p > i {
+  color: var(--heading-2);
+  font-style: italic;
 }
 
-// Links with Gruvbox colors
 a,
 a.internal,
 a.external,
 .page article a {
-  color: #cc241d !important; /* Gruvbox red */
-  text-decoration: none !important;
+  color: var(--link-color);
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 a:hover,
 a.internal:hover,
-a.external:hover {
-  color: #98971a !important; /* Gruvbox green */
+a.external:hover,
+.page article a:hover {
+  color: var(--link-hover);
 }
 
-// Code styling with Gruvbox - only for regular content, not callouts
-.page article code:not(pre code):not(.callout code) {
-  background-color: #ebdbb2 !important; /* Gruvbox light1 */
-  color: #458588 !important; /* Gruvbox blue */
-  padding: 0.1em 0.3em !important;
-  border-radius: 3px !important;
-  font-family: var(--codeFont) !important;
+a.internal.broken {
+  color: var(--link-muted);
 }
 
-.page article pre:not(.callout pre) {
-  background-color: #ebdbb2 !important; /* Gruvbox light1 */
-  color: #3c3836 !important; /* Gruvbox dark1 */
-  border-radius: 4px !important;
-  padding: 1rem !important;
-  font-family: var(--codeFont) !important;
+.page article code:not(pre code) {
+  background-color: var(--inline-code-bg);
+  color: var(--inline-code-text);
+  border-radius: 4px;
+  padding: 0.15em 0.35em;
+  font-family: var(--codeFont);
+  border: 1px solid color-mix(in srgb, var(--inline-code-bg) 70%, transparent);
 }
 
-// Blockquotes with simple gray styling - only for regular content, not callouts
+.page article pre {
+  background-color: var(--block-code-bg);
+  color: var(--block-code-text);
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: var(--codeFont);
+  border: 1px solid color-mix(in srgb, var(--block-code-bg) 70%, transparent);
+  overflow-x: auto;
+}
+
+.page article pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  border: none;
+}
+
 .page article blockquote:not(.callout) {
-  border-left: 3px solid #666 !important; /* Simple gray */
-  color: #333 !important; /* Dark gray text */
-  background-color: #f5f5f5 !important; /* Light gray background */
-  padding: 1rem 1.5rem !important;
-  margin: 1.5rem 0 !important;
-  font-style: italic !important;
-  border-radius: 4px !important;
+  border-left: 4px solid var(--blockquote-border);
+  background-color: var(--blockquote-bg);
+  color: var(--darkgray);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  font-style: italic;
 }
 
-// Override the base blockquote styling to use gray instead of var(--secondary)
 blockquote {
-  border-left-color: #666 !important; /* Simple gray border instead of red */
-}
-
-// Colorful Callouts - Matching the Showcase Image
-// ===============================================
-
-// Color variables for callouts matching the image
-:root {
-  --callout-border-width: 1px;
-  --callout-border-opacity: 0.8;
-  --callout-default: 69, 133, 136; /* Blue for info */
-  --callout-summary: 104, 157, 106; /* Green for summary/abstract */
-  --callout-info: 69, 133, 136; /* Blue for info */
-  --callout-todo: 69, 133, 136; /* Blue for todo */
-  --callout-important: 104, 157, 106; /* Green for important */
-  --callout-tip: 104, 157, 106; /* Green for tip */
-  --callout-success: 104, 157, 106; /* Green for success */
-  --callout-question: 215, 153, 33; /* Yellow for question */
-  --callout-warning: 214, 93, 14; /* Orange for warning */
-  --callout-fail: 204, 36, 29; /* Red for failure */
-  --callout-error: 204, 36, 29; /* Red for error */
-  --callout-bug: 204, 36, 29; /* Red for bug */
-  --callout-example: 177, 98, 134; /* Purple for example */
-  --callout-quote: 146, 131, 116; /* Beige for quote */
+  border-left-color: var(--blockquote-border);
 }
 
 .callout {
-  --callout-color: var(--callout-default) !important;
-  overflow: hidden !important;
-  border-style: solid !important;
-  border-color: rgba(var(--callout-color), var(--callout-border-opacity)) !important;
-  border-width: var(--callout-border-width) !important;
-  border-radius: 4px !important;
-  margin: 1em 0 !important;
-  padding: 12px 12px 12px 24px !important;
-  background-color: rgba(var(--callout-color), 0.15) !important;
-
-  &[data-callout] {
-    --callout-color: var(--callout-default) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="abstract"] {
-    --callout-color: var(--callout-summary) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="summary"] {
-    --callout-color: var(--callout-summary) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="tldr"] {
-    --callout-color: var(--callout-summary) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="info"] {
-    --callout-color: var(--callout-info) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="todo"] {
-    --callout-color: var(--callout-todo) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="important"] {
-    --callout-color: var(--callout-important) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="tip"] {
-    --callout-color: var(--callout-tip) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="hint"] {
-    --callout-color: var(--callout-tip) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="success"] {
-    --callout-color: var(--callout-success) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="check"] {
-    --callout-color: var(--callout-success) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="done"] {
-    --callout-color: var(--callout-success) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="question"] {
-    --callout-color: var(--callout-question) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="help"] {
-    --callout-color: var(--callout-question) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="faq"] {
-    --callout-color: var(--callout-question) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="warning"] {
-    --callout-color: var(--callout-warning) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="caution"] {
-    --callout-color: var(--callout-warning) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="attention"] {
-    --callout-color: var(--callout-warning) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="failure"] {
-    --callout-color: var(--callout-fail) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="fail"] {
-    --callout-color: var(--callout-fail) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="missing"] {
-    --callout-color: var(--callout-fail) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="danger"] {
-    --callout-color: var(--callout-error) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="error"] {
-    --callout-color: var(--callout-error) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="bug"] {
-    --callout-color: var(--callout-bug) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="example"] {
-    --callout-color: var(--callout-example) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="quote"] {
-    --callout-color: var(--callout-quote) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
-  
-  &[data-callout="cite"] {
-    --callout-color: var(--callout-quote) !important;
-    background-color: rgba(var(--callout-color), 0.15) !important;
-  }
+  --callout-color: var(--callout-default);
+  border-style: solid;
+  border-color: rgba(var(--callout-color), var(--callout-border-opacity));
+  border-width: var(--callout-border-width);
+  border-radius: 6px;
+  background-color: rgba(var(--callout-color), 0.16);
+  padding: 0.9rem 1rem 0.9rem 1.2rem;
+  margin: 1.25rem 0;
+  overflow: hidden;
 }
 
 .callout-title {
-  padding: 0 !important;
-  display: flex !important;
-  gap: 4px !important;
-  font-size: inherit !important;
-  color: rgb(var(--callout-color)) !important;
-  line-height: 1.3 !important;
-  align-items: flex-start !important;
-  font-weight: 600 !important;
-  margin-bottom: 0.5rem !important;
-
-  & > .callout-title-inner > p {
-    font-weight: 600 !important;
-    color: inherit !important;
-  }
-
-  .callout-title-inner {
-    font-weight: 600 !important;
-    color: inherit !important;
-  }
+  color: rgb(var(--callout-color));
+  font-weight: 600;
+  margin-bottom: 0.4rem;
 }
 
 .callout-content {
-  overflow-x: auto;
-  padding: 0;
-  background-color: transparent;
+  background: transparent;
 }
 
-// put your custom CSS here!
+$callout-groups: (
+  summary: (
+    "abstract",
+    "summary",
+    "tldr",
+  ),
+  info: (
+    "info",
+    "todo",
+  ),
+  important: (
+    "important",
+  ),
+  tip: (
+    "tip",
+    "hint",
+  ),
+  success: (
+    "success",
+    "check",
+    "done",
+  ),
+  question: (
+    "question",
+    "help",
+    "faq",
+  ),
+  warning: (
+    "warning",
+    "caution",
+    "attention",
+  ),
+  fail: (
+    "failure",
+    "fail",
+    "missing",
+  ),
+  error: (
+    "danger",
+    "error",
+    "bug",
+  ),
+  example: (
+    "example",
+  ),
+  quote: (
+    "quote",
+    "cite",
+  ),
+);
+
+@each $group, $callouts in $callout-groups {
+  $color-var: var(--callout-#{$group});
+  .callout {
+    @each $callout in $callouts {
+      &[data-callout="#{$callout}"] {
+        --callout-color: #{$color-var};
+      }
+    }
+  }
+}
+
+.page article table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--lightgray) 70%, transparent);
+}
+
+.page article table th,
+.page article table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--lightgray) 60%, transparent);
+}
+
+.page article table tbody tr:nth-child(even) {
+  background-color: var(--table-stripe);
+}
+
+// Explorer and navigation refinements
+.explorer button,
+.explorer .folder-container div > a,
+.explorer .folder-container div > button span {
+  color: var(--secondary);
+}
+
+.explorer .folder-container div > a:hover,
+.explorer .folder-container div > button:hover span {
+  color: var(--tertiary);
+}
+
+button,
+input,
+textarea {
+  font-family: var(--bodyFont);
+}
+
+.search .search-button {
+  background-color: var(--lightgray);
+  color: var(--darkgray);
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--lightgray) 60%, transparent);
+}
+
+.search .search-space {
+  background-color: var(--light);
+  color: var(--darkgray);
+  border-radius: 12px;
+  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.18);
+}
+
+.page article hr {
+  border: none;
+  border-top: 2px solid color-mix(in srgb, var(--lightgray) 65%, transparent);
+  margin: 2rem 0;
+}
+
+.page article ul,
+.page article ol {
+  padding-left: 1.25rem;
+}
+
+.page article li::marker {
+  color: var(--tertiary);
+}
+
+.page article ::selection {
+  background-color: var(--textHighlight);
+}
