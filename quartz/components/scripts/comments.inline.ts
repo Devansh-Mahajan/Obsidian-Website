@@ -1,5 +1,6 @@
 const changeTheme = (e: CustomEventMap["themechange"]) => {
   const theme = e.detail.theme
+  const container = document.querySelector(".giscus") as GiscusElement | null
   const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement
   if (!iframe) {
     return
@@ -9,11 +10,16 @@ const changeTheme = (e: CustomEventMap["themechange"]) => {
     return
   }
 
+  const resolvedTheme = getThemeName(theme)
+  if (container) {
+    container.setAttribute("data-theme", resolvedTheme)
+  }
+
   iframe.contentWindow.postMessage(
     {
       giscus: {
         setConfig: {
-          theme: getThemeUrl(getThemeName(theme)),
+          theme: getThemeUrl(resolvedTheme),
         },
       },
     },
@@ -82,9 +88,19 @@ document.addEventListener("nav", () => {
   giscusScript.setAttribute("data-lang", giscusContainer.dataset.lang)
   const storedTheme = localStorage.getItem("theme")
   const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches
-  const theme = storedTheme ?? (prefersLight ? "light" : "dark")
-  giscusContainer.setAttribute("data-theme", theme)
-  giscusScript.setAttribute("data-theme", getThemeUrl(getThemeName(theme)))
+  const savedTheme = document.documentElement.getAttribute("saved-theme")
+  const isBinaryTheme = (value: string | null): value is "light" | "dark" =>
+    value === "light" || value === "dark"
+  const theme = isBinaryTheme(savedTheme)
+    ? savedTheme
+    : isBinaryTheme(storedTheme)
+      ? storedTheme
+      : prefersLight
+        ? "light"
+        : "dark"
+  const resolvedTheme = getThemeName(theme)
+  giscusContainer.setAttribute("data-theme", resolvedTheme)
+  giscusScript.setAttribute("data-theme", getThemeUrl(resolvedTheme))
 
   giscusContainer.appendChild(giscusScript)
 

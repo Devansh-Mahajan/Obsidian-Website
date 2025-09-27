@@ -1,9 +1,9 @@
-import FlexSearch from "flexsearch"
+import { Document as FlexSearchDocument, DocumentData } from "flexsearch"
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 import { registerEscapeHandler, removeAllChildren } from "./util"
 import { FullSlug, normalizeRelativeURLs, resolveRelative } from "../../util/path"
 
-interface Item {
+interface Item extends DocumentData {
   id: number
   slug: FullSlug
   title: string
@@ -16,8 +16,7 @@ type SearchType = "basic" | "tags"
 let searchType: SearchType = "basic"
 let currentSearchTerm: string = ""
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
-let index = new FlexSearch.Document<Item>({
-  charset: "latin:extra",
+let index: FlexSearchDocument<Item> = new FlexSearchDocument<Item>({
   encode: encoder,
   document: {
     id: "id",
@@ -38,6 +37,8 @@ let index = new FlexSearch.Document<Item>({
     ],
   },
 })
+
+type SearchResults = Array<{ field: string; result: number[] }>
 
 const p = new DOMParser()
 const fetchContentCache: Map<FullSlug, Element[]> = new Map()
@@ -397,7 +398,7 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
     searchLayout.classList.toggle("display-results", currentSearchTerm !== "")
     searchType = currentSearchTerm.startsWith("#") ? "tags" : "basic"
 
-    let searchResults: FlexSearch.SimpleDocumentSearchResultSetUnit[]
+    let searchResults: SearchResults
     if (searchType === "tags") {
       currentSearchTerm = currentSearchTerm.substring(1).trim()
       const separatorIndex = currentSearchTerm.indexOf(" ")
@@ -405,13 +406,13 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
         // search by title and content index and then filter by tag (implemented in flexsearch)
         const tag = currentSearchTerm.substring(0, separatorIndex)
         const query = currentSearchTerm.substring(separatorIndex + 1).trim()
-        searchResults = await index.searchAsync({
+        searchResults = (await index.searchAsync({
           query: query,
           // return at least 10000 documents, so it is enough to filter them by tag (implemented in flexsearch)
           limit: Math.max(numSearchResults, 10000),
           index: ["title", "content"],
-          tag: tag,
-        })
+          tag: [{ tags: tag }],
+        })) as SearchResults
         for (let searchResult of searchResults) {
           searchResult.result = searchResult.result.slice(0, numSearchResults)
         }
@@ -420,18 +421,18 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
         currentSearchTerm = query
       } else {
         // default search by tags index
-        searchResults = await index.searchAsync({
+        searchResults = (await index.searchAsync({
           query: currentSearchTerm,
           limit: numSearchResults,
           index: ["tags"],
-        })
+        })) as SearchResults
       }
     } else if (searchType === "basic") {
-      searchResults = await index.searchAsync({
+      searchResults = (await index.searchAsync({
         query: currentSearchTerm,
         limit: numSearchResults,
         index: ["title", "content"],
-      })
+      })) as SearchResults
     }
 
     const getByField = (field: string): number[] => {
