@@ -102,9 +102,12 @@ body {
 
 .page-title,
 .page-title a,
+.article-title,
+.article-title a,
 .page article h1,
 .page article h1 a,
-header h1 {
+header h1,
+header h1 a {
   color: var(--heading-1) !important;
 }
 
@@ -360,6 +363,12 @@ textarea {
   color: var(--tertiary);
 }
 
-.page article ::selection {
+.page article ::selection,
+header ::selection,
+.page-title::selection,
+.page-title a::selection,
+.article-title::selection,
+.article-title a::selection {
   background-color: var(--textHighlight);
+  color: inherit;
 }
