@@ -95,23 +95,24 @@ a.external:hover {
   font-style: italic !important;
 }
 
-// Color Theory Enhanced Callouts
-// ===============================
+// Professional Warm Gruvbox Callouts
+// ===================================
 
-// Callout containers with warm, harmonious backgrounds
+// Callout containers with warm, professional styling
 .callout {
-  border-radius: 8px !important;
-  padding: 1.25rem !important;
+  border-radius: 6px !important;
+  padding: 1.5rem !important;
   margin: 1.5rem 0 !important;
   border-left: 4px solid !important;
   position: relative !important;
-  box-shadow: 0 2px 8px rgba(60, 56, 54, 0.08) !important;
+  box-shadow: 0 2px 6px rgba(60, 56, 54, 0.06) !important;
   transition: all 0.2s ease !important;
+  background: var(--light) !important; /* Use theme background */
 }
 
 // Hover effect for better interactivity
 .callout:hover {
-  box-shadow: 0 4px 12px rgba(60, 56, 54, 0.12) !important;
+  box-shadow: 0 4px 10px rgba(60, 56, 54, 0.1) !important;
   transform: translateY(-1px) !important;
 }
 
@@ -124,42 +125,44 @@ a.external:hover {
   gap: 0.5rem !important;
 }
 
-// Different callout types with harmonious color schemes
+// Professional warm color palette using color wheel harmony
+// All colors are warm-toned and complementary to Gruvbox theme
+
 .callout[data-callout="note"] {
-  background: linear-gradient(135deg, #f6efe6 0%, #f2ebe1 100%) !important;
-  border-left-color: #665c54 !important; /* Warm neutral */
+  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
+  border-left-color: #d79921 !important; /* Gruvbox yellow-orange */
   color: #3c3836 !important;
 }
 
 .callout[data-callout="info"] {
-  background: linear-gradient(135deg, #e8f4f8 0%, #ddeef4 100%) !important;
-  border-left-color: #458588 !important; /* Gruvbox blue */
-  color: #2d3748 !important;
+  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
+  border-left-color: #b16286 !important; /* Gruvbox purple - warm violet */
+  color: #3c3836 !important;
 }
 
 .callout[data-callout="tip"] {
-  background: linear-gradient(135deg, #f0f9e8 0%, #e8f5e8 100%) !important;
-  border-left-color: #98971a !important; /* Gruvbox green */
-  color: #2d5016 !important;
+  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
+  border-left-color: #98971a !important; /* Gruvbox green - warm olive */
+  color: #3c3836 !important;
 }
 
 .callout[data-callout="warning"] {
-  background: linear-gradient(135deg, #fff8e1 0%, #fff3c4 100%) !important;
-  border-left-color: #d79921 !important; /* Gruvbox yellow */
-  color: #8b6914 !important;
+  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
+  border-left-color: #d79921 !important; /* Gruvbox yellow - warm amber */
+  color: #3c3836 !important;
 }
 
 .callout[data-callout="danger"],
 .callout[data-callout="error"] {
-  background: linear-gradient(135deg, #ffeaea 0%, #ffddd6 100%) !important;
-  border-left-color: #cc241d !important; /* Gruvbox red */
-  color: #8b1538 !important;
+  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
+  border-left-color: #cc241d !important; /* Gruvbox red - warm crimson */
+  color: #3c3836 !important;
 }
 
 .callout[data-callout="success"] {
-  background: linear-gradient(135deg, #f0fff4 0%, #e6ffed 100%) !important;
-  border-left-color: #689d6a !important; /* Gruvbox aqua */
-  color: #22543d !important;
+  background: linear-gradient(135deg, #fcf6f0 0%, #f9f0e6 100%) !important;
+  border-left-color: #689d6a !important; /* Gruvbox aqua - warm teal */
+  color: #3c3836 !important;
 }
 
 // Callout content styling
@@ -206,45 +209,27 @@ a.external:hover {
   margin-bottom: 0.25rem !important;
 }
 
-// Dark mode callout adjustments
+// Dark mode callout adjustments - maintaining warm professional theme
 @media (prefers-color-scheme: dark) {
   .callout {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+    background: var(--light) !important; /* Use theme dark background */
   }
   
   .callout:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
   }
   
-  .callout[data-callout="note"] {
-    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%) !important;
-    color: #e0e0e0 !important;
-  }
-  
-  .callout[data-callout="info"] {
-    background: linear-gradient(135deg, #1a2a2e 0%, #1f3339 100%) !important;
-    color: #b3e5fc !important;
-  }
-  
-  .callout[data-callout="tip"] {
-    background: linear-gradient(135deg, #1a2e1a 0%, #1f331f 100%) !important;
-    color: #c8e6c9 !important;
-  }
-  
-  .callout[data-callout="warning"] {
-    background: linear-gradient(135deg, #2e2a1a 0%, #332f1f 100%) !important;
-    color: #fff9c4 !important;
-  }
-  
+  // All callouts use the same warm dark background with colored borders
+  .callout[data-callout="note"],
+  .callout[data-callout="info"],
+  .callout[data-callout="tip"],
+  .callout[data-callout="warning"],
   .callout[data-callout="danger"],
-  .callout[data-callout="error"] {
-    background: linear-gradient(135deg, #2e1a1a 0%, #331f1f 100%) !important;
-    color: #ffcdd2 !important;
-  }
-  
+  .callout[data-callout="error"],
   .callout[data-callout="success"] {
-    background: linear-gradient(135deg, #1a2e1a 0%, #1f332f 100%) !important;
-    color: #c8e6c9 !important;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+    color: #e0e0e0 !important;
   }
   
   .callout code {
