@@ -97,6 +97,11 @@ a.external:hover {
   border-radius: 4px !important;
 }
 
+// Override the base blockquote styling to use gray instead of var(--secondary)
+blockquote {
+  border-left-color: #666 !important; /* Simple gray border instead of red */
+}
+
 // Obsidian Gruvbox Callouts - Exact Implementation
 // ================================================
 
