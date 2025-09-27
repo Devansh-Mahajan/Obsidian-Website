@@ -1,3 +1,105 @@
 @use "./base.scss";
 
+// Gruvbox Text Colors Only
+// =========================
+
+// Heading colors from Gruvbox
+h1,
+.page-title,
+.article-title,
+header h1,
+.page article h1 {
+  color: #cc241d !important; /* Gruvbox red */
+}
+
+h2,
+header h2,
+.page article h2 {
+  color: #98971a !important; /* Gruvbox green */
+}
+
+h3,
+header h3,
+.page article h3 {
+  color: #d79921 !important; /* Gruvbox yellow */
+}
+
+h4,
+.page article h4 {
+  color: #458588 !important; /* Gruvbox aqua */
+}
+
+h5,
+.page article h5 {
+  color: #b16286 !important; /* Gruvbox purple */
+}
+
+h6,
+.page article h6 {
+  color: #689d6a !important; /* Gruvbox aqua */
+}
+
+// Gruvbox text emphasis and styling
+strong,
+.page article strong,
+.page article p > strong {
+  color: #d79921 !important; /* Gruvbox yellow */
+  font-weight: 600 !important;
+}
+
+em,
+i,
+.page article em,
+.page article i,
+.page article p > em,
+.page article p > i {
+  color: #d79921 !important; /* Gruvbox yellow */
+  font-style: italic !important;
+}
+
+// Links with Gruvbox colors
+a,
+a.internal,
+a.external,
+.page article a {
+  color: #cc241d !important; /* Gruvbox red */
+  text-decoration: none !important;
+}
+
+a:hover,
+a.internal:hover,
+a.external:hover {
+  color: #98971a !important; /* Gruvbox green */
+}
+
+// Code styling with Gruvbox
+code:not(pre code) {
+  background-color: #ebdbb2 !important; /* Gruvbox light1 */
+  color: #458588 !important; /* Gruvbox blue */
+  padding: 0.1em 0.3em !important;
+  border-radius: 3px !important;
+  font-family: var(--codeFont) !important;
+}
+
+pre,
+pre code,
+.page article pre {
+  background-color: #ebdbb2 !important; /* Gruvbox light1 */
+  color: #3c3836 !important; /* Gruvbox dark1 */
+  border-radius: 4px !important;
+  padding: 1rem !important;
+  font-family: var(--codeFont) !important;
+}
+
+// Blockquotes with Gruvbox styling
+blockquote,
+.page article blockquote {
+  border-left: 3px solid #cc241d !important; /* Gruvbox red */
+  background-color: #ebdbb2 !important; /* Gruvbox light1 */
+  color: #3c3836 !important; /* Gruvbox dark1 */
+  padding: 1rem 1.5rem !important;
+  margin: 1.5rem 0 !important;
+  font-style: italic !important;
+}
+
 // put your custom CSS here!
