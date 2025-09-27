@@ -41,15 +41,15 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#fcf6f0", // Warm creamy background
-          lightgray: "#f6efe6", // Warmer creamy light gray
-          gray: "#ede4d6", // Warmer creamy medium gray
-          darkgray: "#665c54", // Warm dark gray text
-          dark: "#3c3836", // Warm dark text
-          secondary: "#cc241d", // Gruvbox red accent
-          tertiary: "#98971a", // Gruvbox green accent
-          highlight: "rgba(204, 36, 29, 0.15)", // Red highlight
-          textHighlight: "#d79921", // Gruvbox yellow highlight
+          light: "#ffffff", // Clean white background
+          lightgray: "#f5f5f5", // Light gray
+          gray: "#e0e0e0", // Medium gray
+          darkgray: "#666666", // Dark gray text
+          dark: "#333333", // Dark text
+          secondary: "#666666", // Simple gray accent
+          tertiary: "#888888", // Light gray accent
+          highlight: "rgba(102, 102, 102, 0.15)", // Gray highlight
+          textHighlight: "#999999", // Light gray highlight
         },
         darkMode: {
           light: "#1a1a1a", // Dark background
