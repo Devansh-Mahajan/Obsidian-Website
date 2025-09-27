@@ -41,26 +41,26 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#ffffff",
-          lightgray: "#f5f5f5",
-          gray: "#d0d0d0",
-          darkgray: "#666666",
-          dark: "#333333",
-          secondary: "#ff6b6b",
-          tertiary: "#ffa726",
-          highlight: "rgba(255, 107, 107, 0.15)",
-          textHighlight: "#fff3cd",
+          light: "#fcf6f0", // Warm creamy background
+          lightgray: "#f6efe6", // Warmer creamy light gray
+          gray: "#ede4d6", // Warmer creamy medium gray
+          darkgray: "#665c54", // Warm dark gray text
+          dark: "#3c3836", // Warm dark text
+          secondary: "#cc241d", // Gruvbox red accent
+          tertiary: "#98971a", // Gruvbox green accent
+          highlight: "rgba(204, 36, 29, 0.15)", // Red highlight
+          textHighlight: "#d79921", // Gruvbox yellow highlight
         },
         darkMode: {
-          light: "#1a1a1a", // dark background like in image
-          lightgray: "#2d2d2d", // slightly lighter dark
-          gray: "#404040", // medium grey
-          darkgray: "#e0e0e0", // light text
-          dark: "#ffffff", // white text
-          secondary: "#ff6b6b", // red like headings in image
-          tertiary: "#ffa726", // orange like accents in image
-          highlight: "rgba(255, 107, 107, 0.15)", // red highlight
-          textHighlight: "#fff3cd", // light orange highlight
+          light: "#1a1a1a", // Dark background
+          lightgray: "#2d2d2d", // Dark gray
+          gray: "#404040", // Medium gray
+          darkgray: "#e0e0e0", // Light text
+          dark: "#ffffff", // White text
+          secondary: "#ff6b6b", // Red accent
+          tertiary: "#ffa726", // Orange accent
+          highlight: "rgba(255, 107, 107, 0.15)", // Red highlight
+          textHighlight: "#fff3cd", // Light yellow highlight
         },
       },
     },

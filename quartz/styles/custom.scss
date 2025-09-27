@@ -95,4 +95,162 @@ a.external:hover {
   font-style: italic !important;
 }
 
+// Color Theory Enhanced Callouts
+// ===============================
+
+// Callout containers with warm, harmonious backgrounds
+.callout {
+  border-radius: 8px !important;
+  padding: 1.25rem !important;
+  margin: 1.5rem 0 !important;
+  border-left: 4px solid !important;
+  position: relative !important;
+  box-shadow: 0 2px 8px rgba(60, 56, 54, 0.08) !important;
+  transition: all 0.2s ease !important;
+}
+
+// Hover effect for better interactivity
+.callout:hover {
+  box-shadow: 0 4px 12px rgba(60, 56, 54, 0.12) !important;
+  transform: translateY(-1px) !important;
+}
+
+// Callout title styling with proper hierarchy
+.callout-title {
+  font-weight: 600 !important;
+  margin-bottom: 0.75rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+// Different callout types with harmonious color schemes
+.callout[data-callout="note"] {
+  background: linear-gradient(135deg, #f6efe6 0%, #f2ebe1 100%) !important;
+  border-left-color: #665c54 !important; /* Warm neutral */
+  color: #3c3836 !important;
+}
+
+.callout[data-callout="info"] {
+  background: linear-gradient(135deg, #e8f4f8 0%, #ddeef4 100%) !important;
+  border-left-color: #458588 !important; /* Gruvbox blue */
+  color: #2d3748 !important;
+}
+
+.callout[data-callout="tip"] {
+  background: linear-gradient(135deg, #f0f9e8 0%, #e8f5e8 100%) !important;
+  border-left-color: #98971a !important; /* Gruvbox green */
+  color: #2d5016 !important;
+}
+
+.callout[data-callout="warning"] {
+  background: linear-gradient(135deg, #fff8e1 0%, #fff3c4 100%) !important;
+  border-left-color: #d79921 !important; /* Gruvbox yellow */
+  color: #8b6914 !important;
+}
+
+.callout[data-callout="danger"],
+.callout[data-callout="error"] {
+  background: linear-gradient(135deg, #ffeaea 0%, #ffddd6 100%) !important;
+  border-left-color: #cc241d !important; /* Gruvbox red */
+  color: #8b1538 !important;
+}
+
+.callout[data-callout="success"] {
+  background: linear-gradient(135deg, #f0fff4 0%, #e6ffed 100%) !important;
+  border-left-color: #689d6a !important; /* Gruvbox aqua */
+  color: #22543d !important;
+}
+
+// Callout content styling
+.callout-content {
+  line-height: 1.6 !important;
+}
+
+.callout-content p {
+  margin-bottom: 0.75rem !important;
+}
+
+.callout-content p:last-child {
+  margin-bottom: 0 !important;
+}
+
+// Code within callouts - subtle styling
+.callout code {
+  background-color: rgba(60, 56, 54, 0.1) !important;
+  color: #665c54 !important;
+  padding: 0.2em 0.4em !important;
+  border-radius: 3px !important;
+  font-size: 0.9em !important;
+}
+
+// Links within callouts
+.callout a {
+  color: inherit !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(60, 56, 54, 0.3) !important;
+  transition: text-decoration-color 0.2s ease !important;
+}
+
+.callout a:hover {
+  text-decoration-color: rgba(60, 56, 54, 0.6) !important;
+}
+
+// Lists within callouts
+.callout ul,
+.callout ol {
+  padding-left: 1.5rem !important;
+}
+
+.callout li {
+  margin-bottom: 0.25rem !important;
+}
+
+// Dark mode callout adjustments
+@media (prefers-color-scheme: dark) {
+  .callout {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  .callout:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  .callout[data-callout="note"] {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%) !important;
+    color: #e0e0e0 !important;
+  }
+  
+  .callout[data-callout="info"] {
+    background: linear-gradient(135deg, #1a2a2e 0%, #1f3339 100%) !important;
+    color: #b3e5fc !important;
+  }
+  
+  .callout[data-callout="tip"] {
+    background: linear-gradient(135deg, #1a2e1a 0%, #1f331f 100%) !important;
+    color: #c8e6c9 !important;
+  }
+  
+  .callout[data-callout="warning"] {
+    background: linear-gradient(135deg, #2e2a1a 0%, #332f1f 100%) !important;
+    color: #fff9c4 !important;
+  }
+  
+  .callout[data-callout="danger"],
+  .callout[data-callout="error"] {
+    background: linear-gradient(135deg, #2e1a1a 0%, #331f1f 100%) !important;
+    color: #ffcdd2 !important;
+  }
+  
+  .callout[data-callout="success"] {
+    background: linear-gradient(135deg, #1a2e1a 0%, #1f332f 100%) !important;
+    color: #c8e6c9 !important;
+  }
+  
+  .callout code {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #e0e0e0 !important;
+  }
+}
+
 // put your custom CSS here!
