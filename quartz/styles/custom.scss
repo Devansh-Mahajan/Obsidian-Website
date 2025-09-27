@@ -112,7 +112,7 @@ a.external:hover {
 
   // Add the large quote symbol content
   &::before {
-    content: """ !important;
+    content: "\201C" !important; /* Unicode for left double quotation mark */
   }
 
   // Quote title/header styling (for "Quote" text)
