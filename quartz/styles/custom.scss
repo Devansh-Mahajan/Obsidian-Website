@@ -86,64 +86,15 @@ a.external:hover {
   font-family: var(--codeFont) !important;
 }
 
-// Blockquotes with Gruvbox styling - only for regular content, not callouts
+// Blockquotes with simple gray styling - only for regular content, not callouts
 .page article blockquote:not(.callout) {
-  border-left: 3px solid #cc241d !important; /* Gruvbox red */
-  color: #3c3836 !important; /* Gruvbox dark1 */
-  background-color: #ebdbb2 !important; /* Gruvbox light1 background */
+  border-left: 3px solid #666 !important; /* Simple gray */
+  color: #333 !important; /* Dark gray text */
+  background-color: #f5f5f5 !important; /* Light gray background */
   padding: 1rem 1.5rem !important;
   margin: 1.5rem 0 !important;
   font-style: italic !important;
   border-radius: 4px !important;
-  position: relative !important;
-
-  // Large quote symbol at top-left (like in the image)
-  &::before {
-    content: "" !important;
-    position: absolute !important;
-    top: 0.5rem !important;
-    left: 1rem !important;
-    font-size: 2.5rem !important;
-    color: #cc241d !important; /* Gruvbox red */
-    font-family: serif !important;
-    line-height: 1 !important;
-    z-index: 1 !important;
-  }
-
-  // Add the large quote symbol content
-  &::before {
-    content: "\201C" !important; /* Unicode for left double quotation mark */
-  }
-
-  // Quote title/header styling (for "Quote" text)
-  > p:first-child,
-  > div:first-child,
-  .quote-title,
-  .blockquote-title {
-    color: #cc241d !important; /* Gruvbox red */
-    font-weight: 600 !important;
-    font-size: 1.1rem !important;
-    margin-bottom: 0.5rem !important;
-    margin-top: 0 !important;
-  }
-
-  // Any quote icons or symbols within blockquotes
-  .quote-icon,
-  .quote-symbol,
-  [data-quote-icon] {
-    color: #cc241d !important; /* Gruvbox red */
-  }
-
-  // Attribution/cite styling
-  cite,
-  .attribution,
-  .blockquote-attribution {
-    color: #3c3836 !important; /* Gruvbox dark1 */
-    font-style: italic !important;
-    font-size: 0.9rem !important;
-    margin-top: 1rem !important;
-    display: block !important;
-  }
 }
 
 // Obsidian Gruvbox Callouts - Exact Implementation
