@@ -89,7 +89,6 @@ a.external:hover {
 // Blockquotes with Gruvbox styling - only for regular content, not callouts
 .page article blockquote:not(.callout) {
   border-left: 3px solid #cc241d !important; /* Gruvbox red */
-  background-color: #ebdbb2 !important; /* Gruvbox light1 */
   color: #3c3836 !important; /* Gruvbox dark1 */
   padding: 1rem 1.5rem !important;
   margin: 1.5rem 0 !important;
