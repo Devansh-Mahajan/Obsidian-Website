@@ -19,10 +19,13 @@ body {
   color: var(--darkgray);
 }
 
-.text-highlight {
+.text-highlight,
+.highlight {
   background-color: var(--textHighlight);
+  color: var(--textHighlightColor);
   padding: 0 0.1rem;
   border-radius: 5px;
+  font-weight: $semiBoldWeight;
 }
 ::selection {
   background: color-mix(in srgb, var(--tertiary) 60%, rgba(255, 255, 255, 0));

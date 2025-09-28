@@ -47,6 +47,9 @@
   --blockquote-border: #928374;
   --blockquote-bg: rgba(146, 131, 116, 0.18);
   --table-stripe: rgba(146, 131, 116, 0.1);
+  --highlight: rgba(204, 36, 29, 0.18);
+  --textHighlight: rgba(251, 73, 52, 0.24);
+  --textHighlightColor: #6f1a15;
 }
 
 :root[saved-theme="light"] {
@@ -59,8 +62,9 @@
   --dark: #1d2021;
   --secondary: #cc241d;
   --tertiary: #98971a;
-  --highlight: rgba(204, 36, 29, 0.18);
-  --textHighlight: rgba(250, 189, 47, 0.35);
+  --highlight: rgba(204, 36, 29, 0.2);
+  --textHighlight: rgba(251, 73, 52, 0.26);
+  --textHighlightColor: #6f1a15;
 
   --inline-code-bg: #f2e5bc;
   --inline-code-text: #3c3836;
@@ -81,8 +85,9 @@
   --dark: #fbf1c7;
   --secondary: #fe8019;
   --tertiary: #b8bb26;
-  --highlight: rgba(254, 128, 25, 0.22);
-  --textHighlight: rgba(250, 189, 47, 0.35);
+  --highlight: rgba(214, 93, 14, 0.3);
+  --textHighlight: rgba(251, 73, 52, 0.5);
+  --textHighlightColor: #ffe2dd;
 
   --inline-code-bg: #32302f;
   --inline-code-text: #ebdbb2;
