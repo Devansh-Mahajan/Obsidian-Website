@@ -56,7 +56,7 @@ const config: QuartzConfig = {
           lightgray: "#2d2d2d", // Dark gray
           gray: "#404040", // Medium gray
           darkgray: "#e0e0e0", // Light text
-          dark: "#fabd2f", // Gruvbox yellow for dark mode headings
+          dark: "#cc241d", // Same Gruvbox red for both modes
           secondary: "#ff6b6b", // Red accent
           tertiary: "#ffa726", // Orange accent
           highlight: "rgba(255, 107, 107, 0.15)", // Red highlight
