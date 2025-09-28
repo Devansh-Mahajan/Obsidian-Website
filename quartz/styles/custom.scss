@@ -1,108 +1,205 @@
 @use "./base.scss";
 
-// Gruvbox-inspired theme variables
+// Obsidian Gruvbox theme implementation for Quartz
 :root {
-  --bodyFont:
-    "Inter", "Avenir", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-    Arial, sans-serif;
-  --headerFont:
-    "Avenir", "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-    Arial, sans-serif;
-  --codeFont:
-    "Source Code Pro", "Fira Code", "SFMono-Regular", Menlo, Monaco, "Courier New", monospace;
+  --bodyFont: "JetBrains Mono", "Inter", "Avenir", "Segoe UI", system-ui, -apple-system,
+    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --headerFont: "JetBrains Mono", "Inter", "Avenir", "Segoe UI", system-ui, -apple-system,
+    BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --codeFont: "JetBrains Mono", "Fira Code", "Source Code Pro", "SFMono-Regular", Menlo,
+    Monaco, "Courier New", monospace;
 
+  // canonical Gruvbox palette
+  --gruvbox-dark0-hard: #1d2021;
+  --gruvbox-dark0: #282828;
+  --gruvbox-dark1: #3c3836;
+  --gruvbox-dark2: #504945;
+  --gruvbox-dark3: #665c54;
+  --gruvbox-dark4: #7c6f64;
+
+  --gruvbox-light0: #fbf1c7;
+  --gruvbox-light1: #ebdbb2;
+  --gruvbox-light2: #d5c4a1;
+  --gruvbox-light3: #bdae93;
+  --gruvbox-light4: #a89984;
+
+  --gruvbox-neutral-red: #cc241d;
+  --gruvbox-neutral-green: #98971a;
+  --gruvbox-neutral-yellow: #d79921;
+  --gruvbox-neutral-blue: #458588;
+  --gruvbox-neutral-purple: #b16286;
+  --gruvbox-neutral-aqua: #689d6a;
+  --gruvbox-neutral-orange: #d65d0e;
+
+  --gruvbox-bright-red: #fb4934;
+  --gruvbox-bright-green: #b8bb26;
+  --gruvbox-bright-yellow: #fabd2f;
+  --gruvbox-bright-blue: #83a598;
+  --gruvbox-bright-purple: #d3869b;
+  --gruvbox-bright-aqua: #8ec07c;
+  --gruvbox-bright-orange: #fe8019;
+
+  // shared callout palette sourced from the Obsidian Gruvbox theme
   --callout-border-width: 1px;
-  --callout-border-opacity: 0.28;
-  --callout-default: 69, 133, 136;
-  --callout-summary: 104, 157, 106;
-  --callout-info: 69, 133, 136;
-  --callout-todo: 69, 133, 136;
-  --callout-important: 215, 153, 33;
+  --callout-border-opacity: 0.4;
+  --callout-default: 131, 165, 152;
+  --callout-summary: 184, 187, 38;
+  --callout-info: 131, 165, 152;
+  --callout-todo: 214, 93, 14;
+  --callout-important: 214, 93, 14;
   --callout-tip: 142, 192, 124;
   --callout-success: 152, 151, 26;
-  --callout-question: 215, 153, 33;
-  --callout-warning: 214, 93, 14;
+  --callout-question: 250, 189, 47;
+  --callout-warning: 254, 128, 25;
   --callout-fail: 204, 36, 29;
-  --callout-error: 204, 36, 29;
+  --callout-error: 251, 73, 52;
   --callout-bug: 204, 36, 29;
-  --callout-example: 177, 98, 134;
-  --callout-quote: 146, 131, 116;
+  --callout-example: 211, 134, 155;
+  --callout-quote: 102, 92, 84;
 
-  --heading-1: #cc241d;
-  --heading-2: #d79921;
-  --heading-3: #98971a;
-  --heading-4: #458588;
-  --heading-5: #b16286;
-  --heading-6: #689d6a;
-
-  --link-color: #cc241d;
-  --link-hover: #b8bb26;
   --link-muted: #928374;
+}
+
+@mixin gruvbox-light-theme {
+  color-scheme: light;
+
+  --text-normal: var(--gruvbox-dark2);
+  --text-muted: var(--gruvbox-dark3);
+  --text-faint: var(--gruvbox-dark4);
+
+  --heading-1: var(--gruvbox-neutral-orange);
+  --heading-2: var(--gruvbox-neutral-yellow);
+  --heading-3: var(--gruvbox-neutral-green);
+  --heading-4: var(--gruvbox-neutral-blue);
+  --heading-5: var(--gruvbox-neutral-purple);
+  --heading-6: var(--gruvbox-neutral-aqua);
   --inline-title-color: var(--heading-1);
 
-  --inline-code-bg: #f2e5bc;
-  --inline-code-text: #3c3836;
-  --block-code-bg: #ebdbb2;
-  --block-code-text: #3c3836;
-  --blockquote-border: #928374;
-  --blockquote-bg: rgba(146, 131, 116, 0.18);
-  --table-stripe: rgba(146, 131, 116, 0.1);
-  --highlight: rgba(204, 36, 29, 0.18);
-  --textHighlight: rgba(251, 73, 52, 0.24);
-  --textHighlightColor: #6f1a15;
+  --background-page: var(--gruvbox-light0);
+  --surface-primary: var(--gruvbox-light0);
+  --surface-secondary: var(--gruvbox-light1);
+  --surface-tertiary: var(--gruvbox-light2);
+  --surface-elevated: color-mix(in srgb, var(--gruvbox-light1) 90%, white 10%);
+  --panel-border: color-mix(in srgb, var(--gruvbox-light3) 75%, transparent);
+  --border-subtle: color-mix(in srgb, var(--panel-border) 80%, transparent);
+
+  --light: var(--gruvbox-light0);
+  --lightgray: var(--gruvbox-light1);
+  --gray: var(--gruvbox-light2);
+  --darkgray: var(--text-normal);
+  --dark: var(--gruvbox-dark0);
+
+  --secondary: #076678;
+  --secondary-hover: #427b58;
+  --tertiary: var(--gruvbox-neutral-orange);
+  --link-color: var(--secondary);
+  --link-hover: var(--secondary-hover);
+
+  --inline-code-bg: color-mix(in srgb, var(--gruvbox-light2) 88%, white 12%);
+  --inline-code-text: var(--gruvbox-dark0);
+  --block-code-bg: color-mix(in srgb, var(--gruvbox-light1) 92%, white 8%);
+  --block-code-text: var(--gruvbox-dark0);
+  --code-border: color-mix(in srgb, var(--gruvbox-light3) 60%, transparent);
+
+  --blockquote-border: var(--gruvbox-neutral-yellow);
+  --blockquote-bg: color-mix(in srgb, var(--gruvbox-neutral-yellow) 12%, transparent);
+  --table-stripe: color-mix(in srgb, var(--gruvbox-light2) 35%, transparent);
+
+  --highlight: rgba(250, 189, 47, 0.25);
+  --textHighlight: rgba(250, 189, 47, 0.32);
+  --textHighlightColor: var(--gruvbox-dark0);
+
+  --scrollbar-track: color-mix(in srgb, var(--surface-tertiary) 45%, transparent);
+  --scrollbar-thumb: color-mix(in srgb, var(--gruvbox-dark3) 55%, transparent);
+
+  --tag-bg: color-mix(in srgb, var(--surface-tertiary) 82%, transparent);
+  --tag-text: var(--secondary);
+  --tag-border: color-mix(in srgb, var(--secondary) 35%, transparent);
+
+  --card-shadow: rgba(60, 56, 54, 0.22);
+}
+
+@mixin gruvbox-dark-theme {
+  color-scheme: dark;
+
+  --text-normal: var(--gruvbox-light1);
+  --text-muted: var(--gruvbox-light3);
+  --text-faint: var(--gruvbox-light4);
+
+  --heading-1: var(--gruvbox-bright-orange);
+  --heading-2: var(--gruvbox-bright-yellow);
+  --heading-3: var(--gruvbox-bright-green);
+  --heading-4: var(--gruvbox-bright-blue);
+  --heading-5: var(--gruvbox-bright-purple);
+  --heading-6: var(--gruvbox-bright-aqua);
+  --inline-title-color: var(--heading-2);
+
+  --background-page: var(--gruvbox-dark0-hard);
+  --surface-primary: var(--gruvbox-dark0);
+  --surface-secondary: var(--gruvbox-dark1);
+  --surface-tertiary: var(--gruvbox-dark2);
+  --surface-elevated: color-mix(in srgb, var(--gruvbox-dark1) 88%, rgba(0, 0, 0, 0.12));
+  --panel-border: color-mix(in srgb, var(--gruvbox-dark3) 65%, transparent);
+  --border-subtle: color-mix(in srgb, var(--panel-border) 75%, transparent);
+
+  --light: var(--gruvbox-dark0-hard);
+  --lightgray: var(--gruvbox-dark0);
+  --gray: var(--gruvbox-dark1);
+  --darkgray: var(--text-normal);
+  --dark: var(--gruvbox-light0);
+
+  --secondary: var(--gruvbox-bright-blue);
+  --secondary-hover: var(--gruvbox-bright-aqua);
+  --tertiary: var(--gruvbox-bright-yellow);
+  --link-color: var(--secondary);
+  --link-hover: var(--secondary-hover);
+
+  --inline-code-bg: #32302f;
+  --inline-code-text: var(--gruvbox-light2);
+  --block-code-bg: #282828;
+  --block-code-text: var(--gruvbox-light1);
+  --code-border: color-mix(in srgb, var(--gruvbox-dark2) 65%, transparent);
+
+  --blockquote-border: var(--gruvbox-bright-yellow);
+  --blockquote-bg: color-mix(in srgb, var(--gruvbox-bright-yellow) 14%, transparent);
+  --table-stripe: color-mix(in srgb, var(--gruvbox-dark2) 55%, transparent);
+
+  --highlight: rgba(250, 189, 47, 0.35);
+  --textHighlight: rgba(250, 189, 47, 0.45);
+  --textHighlightColor: var(--gruvbox-dark0);
+
+  --scrollbar-track: color-mix(in srgb, var(--surface-tertiary) 65%, transparent);
+  --scrollbar-thumb: color-mix(in srgb, var(--gruvbox-dark4) 55%, transparent);
+
+  --tag-bg: color-mix(in srgb, var(--surface-tertiary) 70%, transparent);
+  --tag-text: var(--secondary-hover);
+  --tag-border: color-mix(in srgb, var(--tag-text) 45%, transparent);
+
+  --card-shadow: rgba(0, 0, 0, 0.4);
+}
+
+:root {
+  @include gruvbox-light-theme;
 }
 
 :root[saved-theme="light"] {
-  color-scheme: light;
-
-  --light: #fbf1c7;
-  --lightgray: #e0cfa9;
-  --gray: #d5c4a1;
-  --darkgray: #3c3836;
-  --dark: #1d2021;
-  --secondary: #cc241d;
-  --tertiary: #98971a;
-  --highlight: rgba(204, 36, 29, 0.2);
-  --textHighlight: rgba(251, 73, 52, 0.26);
-  --textHighlightColor: #6f1a15;
-
-  --inline-code-bg: #f2e5bc;
-  --inline-code-text: #3c3836;
-  --block-code-bg: #ebdbb2;
-  --block-code-text: #3c3836;
-  --blockquote-bg: rgba(235, 219, 178, 0.55);
-  --table-stripe: rgba(235, 219, 178, 0.6);
-  --inline-title-color: var(--heading-1);
+  @include gruvbox-light-theme;
 }
 
 :root[saved-theme="dark"] {
-  color-scheme: dark;
-
-  --light: #1d2021;
-  --lightgray: #3c3836;
-  --gray: #928374;
-  --darkgray: #ebdbb2;
-  --dark: #fbf1c7;
-  --secondary: #fe8019;
-  --tertiary: #b8bb26;
-  --highlight: rgba(214, 93, 14, 0.3);
-  --textHighlight: rgba(251, 73, 52, 0.5);
-  --textHighlightColor: #ffe2dd;
-
-  --inline-code-bg: #32302f;
-  --inline-code-text: #ebdbb2;
-  --block-code-bg: #282828;
-  --block-code-text: #ebdbb2;
-  --blockquote-bg: rgba(40, 40, 40, 0.72);
-  --table-stripe: rgba(60, 56, 54, 0.55);
-  --inline-title-color: var(--heading-1);
+  @include gruvbox-dark-theme;
 }
 
 body {
-  background-color: var(--light);
-  color: var(--darkgray);
+  background-color: var(--background-page);
+  color: var(--text-normal);
   font-family: var(--bodyFont);
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page {
+  background-color: var(--background-page);
 }
 
 .page-title,
@@ -143,8 +240,43 @@ header h6 {
   color: var(--heading-6);
 }
 
-.page article strong,
-.page article p > strong {
+.page > #quartz-body {
+  gap: clamp(1.5rem, 2.5vw, 3rem);
+}
+
+.page > #quartz-body .center > article {
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px var(--card-shadow);
+  padding: clamp(1.75rem, 2.5vw, 2.75rem);
+}
+
+.page > #quartz-body .sidebar {
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: 0 16px 36px var(--card-shadow);
+}
+
+.page > #quartz-body .sidebar > *:first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .page > #quartz-body .center > article,
+  .page > #quartz-body .sidebar {
+    box-shadow: none;
+    border-radius: 12px;
+  }
+
+  .page > #quartz-body .sidebar {
+    background: var(--surface-primary);
+  }
+}
+
+.page article p > strong,
+.page article strong {
   color: var(--heading-2);
   font-weight: 600;
 }
@@ -153,7 +285,7 @@ header h6 {
 .page article i,
 .page article p > em,
 .page article p > i {
-  color: var(--heading-2);
+  color: var(--heading-3);
   font-style: italic;
 }
 
@@ -163,9 +295,7 @@ a.external,
 .page article a {
   color: var(--link-color);
   text-decoration: none;
-  transition:
-    color 0.2s ease,
-    opacity 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 a:hover,
@@ -179,26 +309,39 @@ a.internal.broken {
   color: var(--link-muted);
 }
 
-.page article code:not(pre code) {
+mark,
+.text-highlight,
+.highlight {
+  background-color: var(--textHighlight);
+  color: var(--textHighlightColor);
+  border-radius: 5px;
+  padding: 0 0.15em;
+}
+
+.page article code:not(pre code),
+code:not(pre code) {
   background-color: var(--inline-code-bg);
   color: var(--inline-code-text);
-  border-radius: 4px;
-  padding: 0.15em 0.35em;
+  border-radius: 5px;
+  padding: 0.15em 0.4em;
   font-family: var(--codeFont);
-  border: 1px solid color-mix(in srgb, var(--inline-code-bg) 70%, transparent);
+  border: 1px solid var(--code-border);
 }
 
-.page article pre {
+.page article pre,
+pre:not(.mermaid) {
   background-color: var(--block-code-bg);
   color: var(--block-code-text);
-  border-radius: 8px;
-  padding: 1rem;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
   font-family: var(--codeFont);
-  border: 1px solid color-mix(in srgb, var(--block-code-bg) 70%, transparent);
+  border: 1px solid var(--code-border);
   overflow-x: auto;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--code-border) 30%, transparent);
 }
 
-.page article pre code {
+.page article pre code,
+pre:not(.mermaid) code {
   background: none;
   color: inherit;
   padding: 0;
@@ -208,10 +351,10 @@ a.internal.broken {
 .page article blockquote:not(.callout) {
   border-left: 4px solid var(--blockquote-border);
   background-color: var(--blockquote-bg);
-  color: var(--darkgray);
+  color: var(--text-normal);
   padding: 1rem 1.5rem;
   margin: 1.5rem 0;
-  border-radius: 6px;
+  border-radius: 8px;
   font-style: italic;
 }
 
@@ -221,14 +364,19 @@ blockquote {
 
 .callout {
   --callout-color: var(--callout-default);
+  --color: rgb(var(--callout-color));
+  --border: rgba(var(--callout-color), var(--callout-border-opacity));
+  --bg: color-mix(in srgb, rgb(var(--callout-color)) 16%, transparent);
+
   border-style: solid;
-  border-color: rgba(var(--callout-color), var(--callout-border-opacity));
+  border-color: var(--border);
   border-width: var(--callout-border-width);
-  border-radius: 6px;
-  background-color: rgba(var(--callout-color), 0.16);
-  padding: 0.9rem 1rem 0.9rem 1.2rem;
+  border-radius: 10px;
+  background-color: var(--bg);
+  padding: 1rem 1.1rem 1rem 1.3rem;
   margin: 1.25rem 0;
   overflow: hidden;
+  color: var(--text-normal);
 }
 
 .callout-title {
@@ -298,6 +446,9 @@ $callout-groups: (
     @each $callout in $callouts {
       &[data-callout="#{$callout}"] {
         --callout-color: #{$color-var};
+        --border: rgba(var(--callout-color), var(--callout-border-opacity));
+        --bg: color-mix(in srgb, rgb(var(--callout-color)) 16%, transparent);
+        --color: rgb(var(--callout-color));
       }
     }
   }
@@ -307,61 +458,127 @@ $callout-groups: (
   border-collapse: collapse;
   width: 100%;
   overflow: hidden;
-  border-radius: 6px;
-  border: 1px solid color-mix(in srgb, var(--lightgray) 70%, transparent);
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+}
+
+.page article table thead {
+  background: color-mix(in srgb, var(--surface-tertiary) 35%, transparent);
 }
 
 .page article table th,
 .page article table td {
-  padding: 0.6rem 0.75rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--lightgray) 60%, transparent);
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: left;
 }
 
 .page article table tbody tr:nth-child(even) {
   background-color: var(--table-stripe);
 }
 
-// Explorer and navigation refinements
-.explorer button,
-.explorer .folder-container div > a,
-.explorer .folder-container div > button span {
-  color: var(--secondary);
-}
-
-.explorer .folder-container div > a:hover,
-.explorer .folder-container div > button:hover span {
-  color: var(--tertiary);
-}
-
 button,
 input,
-textarea {
+textarea,
+select {
   font-family: var(--bodyFont);
+  background-color: var(--surface-secondary);
+  color: var(--text-normal);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+button:hover,
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--link-hover);
+  outline: none;
 }
 
 .search .search-button {
-  background-color: var(--lightgray);
-  color: var(--darkgray);
-  border-radius: 6px;
-  border: 1px solid color-mix(in srgb, var(--lightgray) 60%, transparent);
+  background-color: var(--surface-secondary);
+  color: var(--text-normal);
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
 }
 
 .search .search-space {
-  background-color: var(--light);
-  color: var(--darkgray);
-  border-radius: 12px;
-  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.18);
+  background-color: var(--surface-elevated);
+  color: var(--text-normal);
+  border-radius: 16px;
+  box-shadow: 0 18px 45px var(--card-shadow);
+}
+
+.content-meta,
+.content-meta a {
+  color: var(--text-muted);
+}
+
+.content-meta a:hover {
+  color: var(--link-hover);
+}
+
+.breadcrumb-container,
+.breadcrumb-container a,
+.breadcrumb-container p {
+  color: var(--text-muted);
+}
+
+.breadcrumb-container a:hover {
+  color: var(--link-hover);
+}
+
+.recent-notes .section > .meta,
+.backlinks ul li,
+.toc button.toc-header,
+.toc ul.toc-content > li > a {
+  color: var(--text-muted);
+}
+
+.toc ul.toc-content > li > a.in-view {
+  color: var(--link-color);
+}
+
+.recent-notes .section > .desc > h3 > a:hover,
+.backlinks ul li a:hover {
+  color: var(--link-hover);
+}
+
+footer,
+footer a {
+  color: var(--text-muted);
+}
+
+footer a:hover {
+  color: var(--link-hover);
+}
+
+.tags > li > a,
+a.internal.tag-link {
+  background-color: var(--tag-bg) !important;
+  color: var(--tag-text);
+  border: 1px solid var(--tag-border);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+}
+
+a.internal.tag-link:hover {
+  background-color: color-mix(in srgb, var(--tag-bg) 70%, var(--tag-text) 30%);
+  color: var(--tag-text);
 }
 
 .page article hr {
   border: none;
-  border-top: 2px solid color-mix(in srgb, var(--lightgray) 65%, transparent);
-  margin: 2rem 0;
+  border-top: 2px solid var(--border-subtle);
+  margin: 2.25rem 0;
 }
 
 .page article ul,
 .page article ol {
-  padding-left: 1.25rem;
+  padding-left: 1.3rem;
 }
 
 .page article li::marker {
@@ -376,4 +593,37 @@ header ::selection,
 .article-title a::selection {
   background-color: var(--textHighlight);
   color: inherit;
+}
+
+kbd {
+  background: var(--surface-secondary);
+  color: var(--text-normal);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 0.2rem 0.45rem;
+  box-shadow: inset 0 -2px 0 var(--border-subtle);
+}
+
+aside.popover,
+.popover > .popover-inner {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-normal);
+}
+
+* {
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 12px;
 }
