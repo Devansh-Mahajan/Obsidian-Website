@@ -1,9 +1,17 @@
-import FlexSearch from "flexsearch"
+import FlexSearch, { DefaultDocumentSearchResults, DocumentData, Id } from "flexsearch"
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 import { registerEscapeHandler, removeAllChildren } from "./util"
 import { FullSlug, normalizeRelativeURLs, resolveRelative } from "../../util/path"
 
-interface Item {
+type SearchDocument = DocumentData & {
+  id: number
+  slug: FullSlug
+  title: string
+  content: string
+  tags: string[]
+}
+
+interface DisplayItem {
   id: number
   slug: FullSlug
   title: string
@@ -15,9 +23,9 @@ interface Item {
 type SearchType = "basic" | "tags"
 let searchType: SearchType = "basic"
 let currentSearchTerm: string = ""
+let currentTagFilter: string | null = null
 const encoder = (str: string) => str.toLowerCase().split(/([^a-z]|[^\x00-\x7F])/)
-let index = new FlexSearch.Document<Item>({
-  charset: "latin:extra",
+const index = new FlexSearch.Document<SearchDocument>({
   encode: encoder,
   document: {
     id: "id",
@@ -163,6 +171,12 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
     searchLayout.appendChild(el)
   }
 
+  const toNumericId = (value: Id): number | null => {
+    if (typeof value === "number") return value
+    const parsed = Number.parseInt(value, 10)
+    return Number.isNaN(parsed) ? null : parsed
+  }
+
   const enablePreview = searchLayout.dataset.preview === "true"
   let preview: HTMLDivElement | undefined = undefined
   let previewInner: HTMLDivElement | undefined = undefined
@@ -186,6 +200,8 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
     }
     searchLayout.classList.remove("display-results")
     searchType = "basic" // reset search type after closing
+    currentSearchTerm = ""
+    currentTagFilter = null
     searchButton.focus()
   }
 
@@ -263,29 +279,42 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
     }
   }
 
-  const formatForDisplay = (term: string, id: number) => {
+  const formatForDisplay = (term: string, id: number): DisplayItem | undefined => {
     const slug = idDataMap[id]
+    if (!slug) {
+      return undefined
+    }
+
+    const fileData = data[slug]
     return {
       id,
       slug,
-      title: searchType === "tags" ? data[slug].title : highlight(term, data[slug].title ?? ""),
-      content: highlight(term, data[slug].content ?? "", true),
-      tags: highlightTags(term.substring(1), data[slug].tags),
+      title:
+        searchType === "tags" && !term ? fileData.title : highlight(term, fileData.title ?? ""),
+      content: highlight(term, fileData.content ?? "", true),
+      tags: highlightTags(currentTagFilter, fileData.tags),
     }
   }
 
-  function highlightTags(term: string, tags: string[]) {
-    if (!tags || searchType !== "tags") {
+  function highlightTags(term: string | null, tags: string[]) {
+    if (!tags || !term) {
       return []
     }
 
     return tags
       .map((tag) => {
-        if (tag.toLowerCase().includes(term.toLowerCase())) {
-          return `<li><p class="match-tag">#${tag}</p></li>`
-        } else {
-          return `<li><p>#${tag}</p></li>`
+        const lowerTag = tag.toLowerCase()
+        const lowerTerm = term.toLowerCase()
+        const matchIndex = lowerTag.indexOf(lowerTerm)
+        if (matchIndex !== -1) {
+          const matchEnd = matchIndex + term.length
+          const highlightedTag = `${tag.slice(0, matchIndex)}<span class="highlight">${tag.slice(
+            matchIndex,
+            matchEnd,
+          )}</span>${tag.slice(matchEnd)}`
+          return `<li><p class="match-tag">#${highlightedTag}</p></li>`
         }
+        return `<li><p>#${tag}</p></li>`
       })
       .slice(0, numTagResults)
   }
@@ -294,7 +323,7 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
     return new URL(resolveRelative(currentSlug, slug), location.toString())
   }
 
-  const resultToHTML = ({ slug, title, content, tags }: Item) => {
+  const resultToHTML = ({ slug, title, content, tags }: DisplayItem) => {
     const htmlTags = tags.length > 0 ? `<ul class="tags">${tags.join("")}</ul>` : ``
     const itemTile = document.createElement("a")
     itemTile.classList.add("result-card")
@@ -329,7 +358,7 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
     return itemTile
   }
 
-  async function displayResults(finalResults: Item[]) {
+  async function displayResults(finalResults: DisplayItem[]) {
     removeAllChildren(results)
     if (finalResults.length === 0) {
       results.innerHTML = `<a class="result-card no-match">
@@ -392,60 +421,102 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
   }
 
   async function onType(e: HTMLElementEventMap["input"]) {
-    if (!searchLayout || !index) return
-    currentSearchTerm = (e.target as HTMLInputElement).value
-    searchLayout.classList.toggle("display-results", currentSearchTerm !== "")
-    searchType = currentSearchTerm.startsWith("#") ? "tags" : "basic"
+    if (!searchLayout) return
 
-    let searchResults: FlexSearch.SimpleDocumentSearchResultSetUnit[]
-    if (searchType === "tags") {
-      currentSearchTerm = currentSearchTerm.substring(1).trim()
-      const separatorIndex = currentSearchTerm.indexOf(" ")
-      if (separatorIndex != -1) {
-        // search by title and content index and then filter by tag (implemented in flexsearch)
-        const tag = currentSearchTerm.substring(0, separatorIndex)
-        const query = currentSearchTerm.substring(separatorIndex + 1).trim()
-        searchResults = await index.searchAsync({
-          query: query,
-          // return at least 10000 documents, so it is enough to filter them by tag (implemented in flexsearch)
-          limit: Math.max(numSearchResults, 10000),
-          index: ["title", "content"],
-          tag: tag,
-        })
-        for (let searchResult of searchResults) {
-          searchResult.result = searchResult.result.slice(0, numSearchResults)
+    const rawInput = (e.target as HTMLInputElement).value
+    searchLayout.classList.toggle("display-results", rawInput !== "")
+
+    const isTagMode = rawInput.startsWith("#")
+    let queryTerm = isTagMode ? rawInput.substring(1).trim() : rawInput.trim()
+    let tagFilter: string | null = null
+    searchType = isTagMode ? "tags" : "basic"
+
+    if (isTagMode) {
+      const separatorIndex = queryTerm.indexOf(" ")
+      if (separatorIndex !== -1) {
+        tagFilter = queryTerm.substring(0, separatorIndex).trim()
+        queryTerm = queryTerm.substring(separatorIndex + 1).trim()
+        if (queryTerm.length > 0) {
+          searchType = "basic"
         }
-        // set search type to basic and remove tag from term for proper highlightning and scroll
-        searchType = "basic"
-        currentSearchTerm = query
       } else {
-        // default search by tags index
-        searchResults = await index.searchAsync({
-          query: currentSearchTerm,
-          limit: numSearchResults,
-          index: ["tags"],
-        })
+        tagFilter = queryTerm
       }
-    } else if (searchType === "basic") {
+    }
+
+    currentSearchTerm = queryTerm
+    currentTagFilter = tagFilter
+
+    let searchResults: DefaultDocumentSearchResults<SearchDocument> = []
+
+    if (tagFilter && rawInput.startsWith("#") && searchType === "basic" && queryTerm !== "") {
+      const preliminaryResults = await index.searchAsync({
+        query: queryTerm,
+        limit: Math.max(numSearchResults, 1000),
+        index: ["title", "content"],
+      })
+
+      const normalizedTag = tagFilter.toLowerCase()
+      searchResults = preliminaryResults
+        .map((resultSet) => {
+          const filteredIds = resultSet.result
+            .map((docId) => toNumericId(docId))
+            .filter((docId): docId is number => docId !== null)
+            .filter((docId) => {
+              const slug = idDataMap[docId]
+              if (!slug) return false
+              const documentTags = data[slug].tags ?? []
+              return documentTags.some((existingTag: string) =>
+                existingTag.toLowerCase().includes(normalizedTag),
+              )
+            })
+            .slice(0, numSearchResults)
+
+          return {
+            field: resultSet.field,
+            tag: resultSet.tag,
+            result: filteredIds,
+          }
+        })
+        .filter((resultSet) => resultSet.result.length > 0)
+    } else if (searchType === "tags") {
+      const tagQuery = tagFilter ?? queryTerm
+      if (!tagQuery) {
+        await displayResults([])
+        return
+      }
       searchResults = await index.searchAsync({
-        query: currentSearchTerm,
+        query: tagQuery,
+        limit: numSearchResults,
+        index: ["tags"],
+      })
+    } else if (queryTerm !== "") {
+      searchResults = await index.searchAsync({
+        query: queryTerm,
         limit: numSearchResults,
         index: ["title", "content"],
       })
+    } else {
+      await displayResults([])
+      return
     }
 
     const getByField = (field: string): number[] => {
-      const results = searchResults.filter((x) => x.field === field)
-      return results.length === 0 ? [] : ([...results[0].result] as number[])
+      const resultSet = searchResults.find((x) => x.field === field)
+      if (!resultSet) return []
+      return resultSet.result
+        .map((value) => toNumericId(value))
+        .filter((value): value is number => value !== null)
     }
 
-    // order titles ahead of content
     const allIds: Set<number> = new Set([
       ...getByField("title"),
       ...getByField("content"),
       ...getByField("tags"),
     ])
-    const finalResults = [...allIds].map((id) => formatForDisplay(currentSearchTerm, id))
+    const finalResults = [...allIds]
+      .map((id) => formatForDisplay(currentSearchTerm, id))
+      .filter((item): item is DisplayItem => item !== undefined)
     await displayResults(finalResults)
   }
 
@@ -468,16 +539,17 @@ async function setupSearch(searchElement: Element, currentSlug: FullSlug, data: 
 let indexPopulated = false
 async function fillDocument(data: ContentIndex) {
   if (indexPopulated) return
-  let id = 0
+  let nextId = 0
   const promises: Array<Promise<unknown>> = []
   for (const [slug, fileData] of Object.entries<ContentDetails>(data)) {
+    const documentId = nextId++
     promises.push(
-      index.addAsync(id++, {
-        id,
+      index.addAsync(documentId, {
+        id: documentId,
         slug: slug as FullSlug,
-        title: fileData.title,
-        content: fileData.content,
-        tags: fileData.tags,
+        title: fileData.title ?? "",
+        content: fileData.content ?? "",
+        tags: fileData.tags ?? [],
       }),
     )
   }

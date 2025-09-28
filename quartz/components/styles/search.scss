@@ -147,9 +147,11 @@
         }
 
         & .highlight {
-          background: color-mix(in srgb, var(--tertiary) 60%, rgba(255, 255, 255, 0));
+          background: var(--textHighlight);
+          color: var(--textHighlightColor);
           border-radius: 5px;
           scroll-margin-top: 2rem;
+          font-weight: $semiBoldWeight;
         }
 
         & > .preview-container {
@@ -219,15 +221,15 @@
 
             & > ul > li > p {
               border-radius: 8px;
-              background-color: var(--highlight);
+              background-color: var(--textHighlight);
+              color: var(--textHighlightColor);
               padding: 0.2rem 0.4rem;
               margin: 0 0.1rem;
               line-height: 1.4rem;
               font-weight: $boldWeight;
-              color: var(--secondary);
 
               &.match-tag {
-                color: var(--tertiary);
+                color: var(--textHighlightColor);
               }
             }
 
