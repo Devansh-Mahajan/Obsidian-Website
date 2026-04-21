@@ -1,9 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
-/**
- * Devansh Mahajan notes site configuration.
- */
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "Devansh Mahajan",
