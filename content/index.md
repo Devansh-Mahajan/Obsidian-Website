@@ -1,41 +1,44 @@
 ---
-title: "Devansh Mahajan"
-description: "Study Notes & Projects from my ETH Computer Science Journey"
+title: Devansh Mahajan
+description: Electrical Engineering and Computer Science student at ETH Zurich, building a public knowledge base across circuits, systems, mathematics, and software.
 ---
 
-# Devansh Mahajan's Digital Garden 🌱
+# Devansh Mahajan
 
-Hi! I'm **Devansh Mahajan**, a Computer Science student at ETH Zürich. This is my digital knowledge base where I explore the intersection of theory and practice through rigorous study and hands-on projects.
+I study Electrical Engineering and Computer Science at ETH Zurich and use this space to make my working notes more rigorous, searchable, and useful. The site collects coursework, mathematical problem solving, circuits, systems, and technical projects as they develop.
 
-## 🎯 Areas of Focus
+## Current Focus
 
-### [[200 ETH Zurich/|ETH Zurich Studies]]
-My academic journey at ETH, covering algorithms, data structures, mathematics, and computer science fundamentals.
+### [[200 ETH Zurich/ETH BSc EECS - Overview|ETH Zurich EECS]]
 
-### [[300 IMO + Putnam/|Mathematics & Problem Solving]]
-Exploring mathematical concepts through IMO and Putnam problem-solving, including advanced topics in algebra, geometry, and number theory.
+Course notes, summaries, and technical references from my Electrical Engineering and Computer Science studies.
 
-### [[700 Quant/|Quantitative Analysis]]
-Financial mathematics, statistical modeling, and quantitative methods in computer science and finance.
+### [[300 IMO + Putnam/Solving Mathematical Problems -Terence Tao|Mathematical Problem Solving]]
 
-### [[800 Projects/|Software Projects]]
-Hands-on software engineering projects, including web development, algorithms implementation, and system design.
+Structured notes from olympiad-style mathematics, proof technique, and problem-solving practice.
 
-### [[500 Book/|Book Notes & Reviews]]
-Comprehensive notes and insights from books I've read, covering technology, mathematics, and personal development.
+### [[400 IOI/Competitive Programming|Competitive Programming]]
 
-## 🚀 Recent Updates
+Algorithmic problem solving, contest preparation, and implementation patterns.
 
-- **[[200 ETH Zurich/Untitled|ETH Zurich Course Notes]]** - Latest academic content
-- **[[300 IMO + Putnam/Tao Book|Tao's Analysis Book]]** - Advanced mathematical concepts
-- **[[500 Book/Untitled|Book Notes]]** - Recent reading insights
+### [[500 Book/Book Notes|Book Notes]]
 
-## 🔗 Connect
+Notes from technical, mathematical, and personal reading.
 
-- **Personal Website**: [devanshmahajan.pages.dev](https://devanshmahajan.pages.dev)
+### [[700 Quant/Quantitative Work|Quantitative Work]]
+
+Mathematics, statistics, markets, and computational modelling notes.
+
+### [[800 Projects/Projects|Projects]]
+
+Software, electronics, and systems project write-ups.
+
+## Connect
+
+- **Website**: [devanshmahajan.pages.dev](https://devanshmahajan.pages.dev)
 - **GitHub**: [@Devansh-Mahajan](https://github.com/Devansh-Mahajan)
 - **LinkedIn**: [Devansh Mahajan](https://www.linkedin.com/in/devansh-mahajan-2b2b99185/)
 
 ---
 
-*This digital garden grows with my learning journey. Feel free to explore and connect ideas through the interconnected web of knowledge.*
+For site notices and copyright information, see [[Legal]].

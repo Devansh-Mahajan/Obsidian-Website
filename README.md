@@ -1,18 +1,28 @@
-# Quartz v4
+# Devansh Mahajan Notes
 
-> “[One] who works with the door open gets all kinds of interruptions, but [they] also occasionally gets clues as to what the world is and what might be important.” — Richard Hamming
+This repository builds the public Quartz site for Devansh Mahajan's Obsidian vault.
 
-Quartz is a set of tools that helps you publish your [digital garden](https://jzhao.xyz/posts/networked-thought) and notes as a website for free.
-Quartz v4 features a from-the-ground rewrite focusing on end-user extensibility and ease-of-use.
+## Publishing Flow
 
-🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
+1. Notes live in `Devansh-Mahajan/My-Website`.
+2. A push to `main` dispatches `vault-updated` to this repository.
+3. GitHub Actions checks out the vault, syncs publishable files into `content/`, and builds Quartz.
+4. The generated `public/` directory is deployed to GitHub Pages.
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+The local `content/` folder is kept as a preview snapshot. The vault remains the source of truth.
 
-## Sponsors
+## Local Commands
 
-<p align="center">
-  <a href="https://github.com/sponsors/jackyzha0">
-    <img src="https://cdn.jsdelivr.net/gh/jackyzha0/jackyzha0/sponsorkit/sponsors.svg" />
-  </a>
-</p>
+```bash
+npm ci
+npm run dev
+npm run build
+npm run check
+```
+
+## Structure
+
+- `quartz.config.ts` controls metadata, theme, ignored vault folders, and plugins.
+- `quartz.layout.ts` controls the navigation, graph, table of contents, and backlinks layout.
+- `quartz/styles/custom.scss` contains the Devansh Mahajan visual system.
+- `.github/workflows/deploy.yml` syncs the vault and publishes the site.

@@ -1,20 +1,21 @@
 {
-  "name": "@jackyzha0/quartz",
-  "description": "🌱 publish your digital garden and notes as a website",
+  "name": "devansh-mahajan-notes",
+  "description": "Quartz-powered knowledge base and professional notes site for Devansh Mahajan.",
   "private": true,
   "version": "4.5.1",
   "type": "module",
-  "author": "jackyzha0 <j.zhao2k19@gmail.com>",
+  "author": "Devansh Mahajan",
   "license": "MIT",
-  "homepage": "https://quartz.jzhao.xyz",
+  "homepage": "https://devansh-mahajan.github.io/Obsidian-Website",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jackyzha0/quartz.git"
+    "url": "https://github.com/Devansh-Mahajan/Obsidian-Website.git"
   },
   "scripts": {
     "quartz": "./quartz/bootstrap-cli.mjs",
     "build": "node ./quartz/bootstrap-cli.mjs build",
-    "docs": "npx quartz build --serve -d docs",
+    "dev": "node ./quartz/bootstrap-cli.mjs build --serve",
+    "build:vault": "node ./quartz/bootstrap-cli.mjs build -d ../My-Website",
     "check": "tsc --noEmit && npx prettier . --check",
     "format": "npx prettier . --write",
     "test": "tsx --test",
@@ -25,12 +26,11 @@
     "node": ">=22"
   },
   "keywords": [
-    "site generator",
-    "ssg",
-    "digital-garden",
-    "markdown",
-    "blog",
-    "quartz"
+    "devansh-mahajan",
+    "eth-zurich",
+    "notes",
+    "quartz",
+    "knowledge-base"
   ],
   "bin": {
     "quartz": "./quartz/bootstrap-cli.mjs"

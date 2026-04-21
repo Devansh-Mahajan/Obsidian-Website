@@ -2,25 +2,24 @@ import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
 /**
- * Quartz 4 Configuration
- *
- * See https://quartz.jzhao.xyz/configuration for more information.
+ * Devansh Mahajan notes site configuration.
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "~/Dash",
-    pageTitleSuffix: " - Devansh Mahajan",
+    pageTitle: "Devansh Mahajan",
+    pageTitleSuffix: " | Devansh Mahajan",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "https://devansh-mahajan.github.io/Obsidian-Website",
+    baseUrl: "devansh-mahajan.github.io/Obsidian-Website",
     ignorePatterns: [
       "private",
       "templates",
       ".obsidian",
+      ".github",
       "999 Templates",
       "900 Psychology",
       "100 Notes",
@@ -32,32 +31,33 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "JetBrains Mono",
-        body: "JetBrains Mono",
-        code: "JetBrains Mono",
+        title: { name: "Inter", weights: [600, 700] },
+        header: { name: "Inter", weights: [500, 600, 700] },
+        body: { name: "Inter", weights: [400, 500, 600], includeItalic: true },
+        code: { name: "JetBrains Mono", weights: [400, 500, 600] },
       },
       colors: {
         lightMode: {
-          light: "#fcf6f0", // Warm creamy background
-          lightgray: "#f6efe6", // Warmer creamy light gray
-          gray: "#ede4d6", // Warmer creamy medium gray
-          darkgray: "#665c54", // Warm dark gray text
-          dark: "#3c3836", // Warm dark text
-          secondary: "#cc241d", // Gruvbox red accent
-          tertiary: "#98971a", // Gruvbox green accent
-          highlight: "rgba(204, 36, 29, 0.15)", // Red highlight
-          textHighlight: "#d79921", // Gruvbox yellow highlight
+          light: "#f7f8fb",
+          lightgray: "#e7ebf2",
+          gray: "#c8d0dc",
+          darkgray: "#3f4a5f",
+          dark: "#111827",
+          secondary: "#2563eb",
+          tertiary: "#0f766e",
+          highlight: "rgba(37, 99, 235, 0.12)",
+          textHighlight: "rgba(20, 184, 166, 0.22)",
         },
         darkMode: {
-          light: "#1a1a1a", // Dark background
-          lightgray: "#2d2d2d", // Dark gray
-          gray: "#404040", // Medium gray
-          darkgray: "#e0e0e0", // Light text
-          dark: "#cc241d", // Same Gruvbox red for both modes
-          secondary: "#ff6b6b", // Red accent
-          tertiary: "#ffa726", // Orange accent
-          highlight: "rgba(255, 107, 107, 0.15)", // Red highlight
-          textHighlight: "#fff3cd", // Light yellow highlight
+          light: "#0e1117",
+          lightgray: "#1b2130",
+          gray: "#354156",
+          darkgray: "#d7dee9",
+          dark: "#f8fafc",
+          secondary: "#60a5fa",
+          tertiary: "#2dd4bf",
+          highlight: "rgba(96, 165, 250, 0.16)",
+          textHighlight: "rgba(45, 212, 191, 0.22)",
         },
       },
     },

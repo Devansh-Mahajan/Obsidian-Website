@@ -4,9 +4,8 @@ import path from "path"
 import fs from "fs"
 import { glob } from "../../util/glob"
 import { Argv } from "../../util/ctx"
-import { QuartzConfig } from "../../cfg"
 
-const filesToCopy = async (argv: Argv, cfg: QuartzConfig) => {
+const filesToCopy = async (argv: Argv) => {
   // Look specifically for attachments folder and process its contents
   const attachmentsPattern = "998 Attachements/**"
   return await glob(attachmentsPattern, argv.directory, ["**/*.md"])
@@ -14,7 +13,7 @@ const filesToCopy = async (argv: Argv, cfg: QuartzConfig) => {
 
 const copyFile = async (argv: Argv, fp: FilePath) => {
   const src = joinSegments(argv.directory, fp) as FilePath
-  
+
   // Remove the "998 Attachements/" prefix and create a clean path
   const cleanPath = fp.replace(/^998 Attachements\//, "attachments/")
   const name = slugifyFilePath(cleanPath as FilePath)
@@ -31,8 +30,8 @@ const copyFile = async (argv: Argv, fp: FilePath) => {
 export const Attachments: QuartzEmitterPlugin = () => {
   return {
     name: "Attachments",
-    async *emit({ argv, cfg }) {
-      const fps = await filesToCopy(argv, cfg)
+    async *emit({ argv }) {
+      const fps = await filesToCopy(argv)
       for (const fp of fps) {
         yield copyFile(argv, fp)
       }

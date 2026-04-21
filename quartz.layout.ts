@@ -1,12 +1,16 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
-import Comments from "./quartz/components/Comments"
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [Comments],
+  afterBody: [
+    Component.ConditionalRender({
+      component: Component.Comments,
+      condition: (page) => page.fileData.slug !== "index",
+    }),
+  ],
   footer: Component.Footer(),
 }
 
@@ -36,7 +40,22 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Explorer(),
   ],
   right: [
-    Component.Graph(),
+    Component.Graph({
+      localGraph: {
+        depth: 2,
+        scale: 1,
+        repelForce: 0.7,
+        linkDistance: 55,
+        fontSize: 0.68,
+        focusOnHover: true,
+      },
+      globalGraph: {
+        scale: 0.9,
+        repelForce: 0.75,
+        linkDistance: 48,
+        fontSize: 0.7,
+      },
+    }),
     Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(),
   ],

@@ -1,63 +1,5 @@
 const GISCUS_ORIGIN = "https://giscus.app"
 
-const changeTheme = (e: CustomEventMap["themechange"]) => {
-  const theme = e.detail.theme
-  const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement | null
-  if (!iframe || !iframe.contentWindow) {
-    return
-  }
-
-  iframe.contentWindow.postMessage(
-    {
-      giscus: {
-        setConfig: {
-          theme: getThemeUrl(getThemeName(theme)),
-        },
-      },
-    },
-    GISCUS_ORIGIN,
-  )
-}
-
-const getPreferredTheme = (): "light" | "dark" => {
-  const savedTheme = document.documentElement.getAttribute("saved-theme")
-  if (savedTheme === "light" || savedTheme === "dark") {
-    return savedTheme
-  }
-
-  try {
-    const storedTheme = localStorage.getItem("theme")
-    if (storedTheme === "light" || storedTheme === "dark") {
-      return storedTheme
-    }
-  } catch (error) {
-    console.warn("Unable to read theme preference from localStorage", error)
-  }
-
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-}
-
-const getThemeName = (theme: string) => {
-  if (theme !== "dark" && theme !== "light") {
-    return theme
-  }
-  const giscusContainer = document.querySelector(".giscus") as GiscusElement
-  if (!giscusContainer) {
-    return theme
-  }
-  const darkGiscus = giscusContainer.dataset.darkTheme ?? "dark"
-  const lightGiscus = giscusContainer.dataset.lightTheme ?? "light"
-  return theme === "dark" ? darkGiscus : lightGiscus
-}
-
-const getThemeUrl = (theme: string) => {
-  const giscusContainer = document.querySelector(".giscus") as GiscusElement
-  if (!giscusContainer) {
-    return `https://giscus.app/themes/${theme}.css`
-  }
-  return `${giscusContainer.dataset.themeUrl ?? "https://giscus.app/themes"}/${theme}.css`
-}
-
 type GiscusElement = Omit<HTMLElement, "dataset"> & {
   dataset: DOMStringMap & {
     repo: `${string}/${string}`
@@ -75,35 +17,70 @@ type GiscusElement = Omit<HTMLElement, "dataset"> & {
   }
 }
 
+const getPreferredTheme = (): "light" | "dark" => {
+  const savedTheme = document.documentElement.getAttribute("saved-theme")
+  return savedTheme === "dark" ? "dark" : "light"
+}
+
+const getThemeName = (theme: string) => {
+  const container = document.querySelector(".giscus") as GiscusElement | null
+  if (!container || (theme !== "dark" && theme !== "light")) {
+    return theme
+  }
+  return theme === "dark" ? container.dataset.darkTheme : container.dataset.lightTheme
+}
+
+const getThemeUrl = (theme: string) => {
+  const container = document.querySelector(".giscus") as GiscusElement | null
+  return `${container?.dataset.themeUrl ?? "https://giscus.app/themes"}/${theme}.css`
+}
+
+const changeTheme = (event: CustomEventMap["themechange"]) => {
+  const iframe = document.querySelector("iframe.giscus-frame") as HTMLIFrameElement | null
+  if (!iframe?.contentWindow) {
+    return
+  }
+
+  iframe.contentWindow.postMessage(
+    {
+      giscus: {
+        setConfig: {
+          theme: getThemeUrl(getThemeName(event.detail.theme)),
+        },
+      },
+    },
+    GISCUS_ORIGIN,
+  )
+}
+
 const loadGiscus = () => {
-  const giscusContainer = document.querySelector(".giscus") as GiscusElement | null
-  if (!giscusContainer) {
+  const container = document.querySelector(".giscus") as GiscusElement | null
+  if (!container) {
     return false
   }
 
-  giscusContainer.replaceChildren()
+  container.replaceChildren()
 
-  const giscusScript = document.createElement("script")
-  giscusScript.src = `${GISCUS_ORIGIN}/client.js`
-  giscusScript.async = true
-  giscusScript.crossOrigin = "anonymous"
-  giscusScript.setAttribute("data-loading", "eager")
-  giscusScript.setAttribute("data-emit-metadata", "0")
-  giscusScript.setAttribute("data-repo", giscusContainer.dataset.repo)
-  giscusScript.setAttribute("data-repo-id", giscusContainer.dataset.repoId)
-  giscusScript.setAttribute("data-category", giscusContainer.dataset.category)
-  giscusScript.setAttribute("data-category-id", giscusContainer.dataset.categoryId)
-  giscusScript.setAttribute("data-mapping", giscusContainer.dataset.mapping)
-  giscusScript.setAttribute("data-strict", giscusContainer.dataset.strict)
-  giscusScript.setAttribute("data-reactions-enabled", giscusContainer.dataset.reactionsEnabled)
-  giscusScript.setAttribute("data-input-position", giscusContainer.dataset.inputPosition)
-  giscusScript.setAttribute("data-lang", giscusContainer.dataset.lang)
-  const theme = getPreferredTheme()
-  const giscusTheme = getThemeName(theme)
-  giscusContainer.setAttribute("data-theme", giscusTheme)
-  giscusScript.setAttribute("data-theme", getThemeUrl(giscusTheme))
+  const script = document.createElement("script")
+  script.src = `${GISCUS_ORIGIN}/client.js`
+  script.async = true
+  script.crossOrigin = "anonymous"
+  script.setAttribute("data-loading", "lazy")
+  script.setAttribute("data-emit-metadata", "0")
+  script.setAttribute("data-repo", container.dataset.repo)
+  script.setAttribute("data-repo-id", container.dataset.repoId)
+  script.setAttribute("data-category", container.dataset.category)
+  script.setAttribute("data-category-id", container.dataset.categoryId)
+  script.setAttribute("data-mapping", container.dataset.mapping)
+  script.setAttribute("data-strict", container.dataset.strict)
+  script.setAttribute("data-reactions-enabled", container.dataset.reactionsEnabled)
+  script.setAttribute("data-input-position", container.dataset.inputPosition)
+  script.setAttribute("data-lang", container.dataset.lang)
 
-  giscusContainer.appendChild(giscusScript)
+  const theme = getThemeName(getPreferredTheme())
+  container.setAttribute("data-theme", theme)
+  script.setAttribute("data-theme", getThemeUrl(theme))
+  container.appendChild(script)
 
   return true
 }
@@ -116,7 +93,6 @@ document.addEventListener("nav", () => {
   document.addEventListener("themechange", changeTheme)
   window.addCleanup(() => {
     document.removeEventListener("themechange", changeTheme)
-    const giscusContainer = document.querySelector(".giscus") as GiscusElement | null
-    giscusContainer?.replaceChildren()
+    document.querySelector(".giscus")?.replaceChildren()
   })
 })

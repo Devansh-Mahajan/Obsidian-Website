@@ -176,7 +176,7 @@ title: Welcome to Quartz
 ---
 
 This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+Edit this page to begin publishing your notes.
 `,
     )
   }
@@ -217,14 +217,14 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 
   // setup remote
   execSync(
-    `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
+    `git remote show upstream || git remote add upstream https://github.com/Devansh-Mahajan/Obsidian-Website.git`,
     { stdio: "ignore" },
   )
 
   outro(`You're all set! Not sure what to do next? Try:
   • Customizing Quartz a bit more by editing \`quartz.config.ts\`
   • Running \`npx quartz build --serve\` to preview your Quartz locally
-  • Hosting your Quartz online (see: https://quartz.jzhao.xyz/hosting)
+  • Pushing to GitHub Pages through the deploy workflow
 `)
 }
 
@@ -495,7 +495,7 @@ export async function handleUpdate(argv) {
   console.log(`\n${styleText(["bgGreen", "black"], ` Quartz v${version} `)} \n`)
   console.log("Backing up your content")
   execSync(
-    `git remote show upstream || git remote add upstream https://github.com/jackyzha0/quartz.git`,
+    `git remote show upstream || git remote add upstream https://github.com/Devansh-Mahajan/Obsidian-Website.git`,
   )
   await stashContentFolder(contentFolder)
   console.log(
