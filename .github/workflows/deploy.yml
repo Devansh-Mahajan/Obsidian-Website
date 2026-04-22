@@ -49,6 +49,9 @@ jobs:
             --exclude ".DS_Store" \
             --exclude "Blog/" \
             --exclude "999 Templates/" \
+            --exclude "900 Private Notes/" \
+            --exclude "000 ToDo/" \
+            --exclude "100 Notes/" \
             --exclude "private/" \
             --exclude "templates/" \
             ./vault/ ./content/

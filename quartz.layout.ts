@@ -37,7 +37,9 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      filterFn: (node) => node.name !== "998 Attachements",
+    }),
   ],
   right: [
     Component.Graph({
@@ -76,7 +78,9 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      filterFn: (node) => node.name !== "998 Attachements",
+    }),
   ],
   right: [],
 }
