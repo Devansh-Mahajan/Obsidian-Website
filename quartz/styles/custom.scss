@@ -314,22 +314,45 @@ a.internal.broken {
   color: var(--muted);
 }
 
+.page-title .site-lockup {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.page-title .site-mark {
+  display: none;
+}
+
+.page-title .site-wordmark > span {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.page-title small {
+  color: var(--muted);
+  font-weight: 400;
+}
+
 .search {
   max-width: none;
 }
 
 .search .search-button {
-  min-height: 2.35rem;
-  padding: 0 0.35rem;
-  background: var(--surface);
-  color: var(--darkgray);
-  border: 1px solid var(--border);
-  border-radius: 3px;
+  min-height: 2rem;
+  padding: 0;
+  background: transparent;
+  color: var(--muted);
+  border: 0;
+  border-radius: 0;
   box-shadow: none;
 }
 
+.search .search-button p {
+  padding: 0 0 0 0.1rem !important;
+}
+
 .search .search-button:hover {
-  border-color: var(--border-strong);
+  color: var(--darkgray);
 }
 
 .search .search-space {
@@ -341,27 +364,32 @@ a.internal.broken {
 .search .search-space > * {
   background: var(--surface-elevated) !important;
   border-color: var(--border) !important;
-  box-shadow: none !important;
+  box-shadow: 0 12px 32px rgba(28, 24, 17, 0.14) !important;
 }
 
 .explorer,
-.graph,
 .toc,
 .backlinks {
-  padding: 1rem;
-  border: 1px solid var(--border);
-  border-radius: 3px;
+  padding: 0;
+  border: 0;
   background: transparent;
   box-shadow: none;
 }
 
-.explorer button,
-.explorer .folder-container div > a,
-.explorer .folder-container div > button span,
-.toc button,
-.graph > h3,
+
+.explorer .title-button h2,
+.toc .toc-header h3,
 .backlinks > h3 {
-  color: var(--dark);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.explorer .folder-container div > a,
+.explorer .folder-container div > button span {
+  color: var(--darkgray);
 }
 
 .explorer .folder-container div > a:hover,
@@ -373,23 +401,6 @@ a.internal.broken {
 
 .explorer-content .folder-outer > ul {
   border-left-color: var(--border);
-}
-
-.graph > .graph-outer {
-  border-color: var(--border);
-  border-radius: 3px;
-  background: var(--surface-muted);
-}
-
-.graph > .global-graph-outer {
-  background: rgba(28, 24, 17, 0.4);
-}
-
-.graph > .global-graph-outer > .global-graph-container {
-  border-color: var(--border);
-  border-radius: 3px;
-  background: var(--surface-elevated);
-  box-shadow: none;
 }
 
 .backlinks a.internal {

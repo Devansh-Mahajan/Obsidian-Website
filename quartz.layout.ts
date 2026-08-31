@@ -41,26 +41,7 @@ export const defaultContentPageLayout: PageLayout = {
       filterFn: (node) => node.name !== "998 Attachements",
     }),
   ],
-  right: [
-    Component.Graph({
-      localGraph: {
-        depth: 2,
-        scale: 1,
-        repelForce: 0.7,
-        linkDistance: 55,
-        fontSize: 0.68,
-        focusOnHover: true,
-      },
-      globalGraph: {
-        scale: 0.9,
-        repelForce: 0.75,
-        linkDistance: 48,
-        fontSize: 0.7,
-      },
-    }),
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.Backlinks(),
-  ],
+  right: [Component.DesktopOnly(Component.TableOfContents()), Component.Backlinks()],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
