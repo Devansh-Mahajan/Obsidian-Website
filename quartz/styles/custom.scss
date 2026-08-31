@@ -1,37 +1,35 @@
 @use "./base.scss";
 
 :root {
-  --surface: #ffffff;
-  --surface-elevated: #ffffff;
-  --surface-muted: #eef3f9;
-  --border: #d8dee8;
-  --border-strong: #aeb8c8;
-  --muted: #647084;
-  --accent-soft: rgba(37, 99, 235, 0.1);
-  --accent-strong: #1d4ed8;
-  --success-soft: rgba(15, 118, 110, 0.12);
-  --code-surface: #eef3f9;
-  --code-block: #111827;
-  --code-block-text: #eef4ff;
-  --shadow-soft: 0 18px 45px rgba(17, 24, 39, 0.08);
+  --surface: #fdfbf6;
+  --surface-elevated: #fdfbf6;
+  --surface-muted: #f2ecdd;
+  --border: #e2d8c2;
+  --border-strong: #c4b9a1;
+  --muted: #736753;
+  --accent-soft: rgba(138, 58, 36, 0.06);
+  --accent-strong: #8a3a24;
+  --success-soft: rgba(107, 90, 53, 0.1);
+  --code-surface: #f2ecdd;
+  --code-block: #1c1811;
+  --code-block-text: #ece5d5;
 }
 
 :root[saved-theme="dark"] {
   color-scheme: dark;
 
-  --surface: #141923;
-  --surface-elevated: #191f2b;
-  --surface-muted: #202838;
-  --border: #2b3547;
-  --border-strong: #46546a;
-  --muted: #9aa7bb;
-  --accent-soft: rgba(96, 165, 250, 0.14);
-  --accent-strong: #93c5fd;
-  --success-soft: rgba(45, 212, 191, 0.14);
-  --code-surface: #202838;
-  --code-block: #080b11;
-  --code-block-text: #edf5ff;
-  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.3);
+  --surface: #1a1610;
+  --surface-elevated: #1e1a13;
+  --surface-muted: #241f18;
+  --border: #332c21;
+  --border-strong: #4a4131;
+  --muted: #a99d84;
+  --accent-soft: rgba(217, 138, 99, 0.1);
+  --accent-strong: #d98a63;
+  --success-soft: rgba(194, 169, 104, 0.1);
+  --code-surface: #1e1a13;
+  --code-block: #100e0a;
+  --code-block-text: #e6ddc8;
 }
 
 html {
@@ -39,17 +37,11 @@ html {
 }
 
 body {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--surface-muted) 45%, transparent) 0,
-      transparent 18rem
-    ),
-    var(--light);
+  background: var(--light);
   color: var(--darkgray);
   font-family: var(--bodyFont);
-  font-size: 16px;
-  line-height: 1.68;
+  font-size: 17px;
+  line-height: 1.7;
 }
 
 button,
@@ -85,21 +77,23 @@ textarea {
 }
 
 .page article > h1:first-child {
-  max-width: 14ch;
+  max-width: 18ch;
   margin-top: 0;
   margin-bottom: 1rem;
   color: var(--dark) !important;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.06;
-  letter-spacing: 0;
+  font-family: var(--titleFont);
+  font-size: 2.85rem;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
 }
 
 .page article > h1:first-child + p {
-  max-width: 46rem;
+  max-width: 42rem;
   margin-top: 0;
   color: var(--muted);
-  font-size: 1.06rem;
+  font-size: 1.1rem;
+  font-style: italic;
 }
 
 .page-title,
@@ -112,27 +106,21 @@ header h1 {
 
 .page article h2,
 .page article h2 a,
-header h2 {
-  color: var(--dark);
-}
-
 .page article h3,
 .page article h3 a,
-header h3 {
-  color: var(--secondary);
-}
-
 .page article h4,
 .page article h5,
 .page article h6,
+header h2,
+header h3,
 header h4,
 header h5,
 header h6 {
-  color: var(--tertiary);
+  color: var(--dark);
 }
 
 .page article h2 {
-  padding-top: 0.2rem;
+  padding-top: 0.4rem;
   border-top: 1px solid var(--border);
 }
 
@@ -142,7 +130,7 @@ header h6 {
 
 .page article p,
 .page article li {
-  max-width: 48rem;
+  max-width: 42rem;
 }
 
 .page article strong,
@@ -161,12 +149,12 @@ a.internal,
 a.external,
 .page article a {
   color: var(--secondary);
-  text-decoration: none;
-  text-underline-offset: 0.18em;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--secondary) 40%, transparent);
+  text-underline-offset: 0.16em;
   transition:
     color 0.18s ease,
-    background-color 0.18s ease,
-    border-color 0.18s ease;
+    text-decoration-color 0.18s ease;
 }
 
 a:hover,
@@ -174,35 +162,36 @@ a.internal:hover,
 a.external:hover,
 .page article a:hover {
   color: var(--tertiary);
+  text-decoration-color: var(--tertiary);
 }
 
 a.internal {
-  background-color: var(--accent-soft);
-  border-radius: 6px;
-  padding: 0.05rem 0.22rem;
+  background-color: transparent;
+  border-radius: 0;
+  padding: 0;
 }
 
 a.internal.broken {
   color: var(--muted);
-  background-color: color-mix(in srgb, var(--surface-muted) 70%, transparent);
+  text-decoration-style: dashed;
 }
 
 .page article code:not(pre code) {
   background: var(--code-surface);
   color: var(--dark);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 3px;
   padding: 0.12em 0.34em;
   font-family: var(--codeFont);
-  font-size: 0.88em;
+  font-size: 0.85em;
 }
 
 .page article pre {
   background: var(--code-block);
   color: var(--code-block-text);
   border: 1px solid var(--border-strong);
-  border-radius: 8px;
-  box-shadow: var(--shadow-soft);
+  border-radius: 3px;
+  box-shadow: none;
   overflow-x: auto;
 }
 
@@ -214,26 +203,27 @@ a.internal.broken {
 }
 
 .page article blockquote:not(.callout) {
-  max-width: 48rem;
+  max-width: 42rem;
   margin: 1.5rem 0;
-  padding: 1rem 1.15rem;
-  color: var(--darkgray);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--tertiary);
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.05);
+  padding: 0.2rem 0 0.2rem 1.15rem;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-left: 2px solid var(--border-strong);
+  border-radius: 0;
+  font-style: italic;
+  box-shadow: none;
 }
 
 .callout {
-  --callout-color: 37, 99, 235;
-  max-width: 48rem;
+  --callout-color: 138, 58, 36;
+  max-width: 42rem;
   margin: 1.35rem 0;
   padding: 0.95rem 1rem;
-  border: 1px solid rgba(var(--callout-color), 0.28);
-  border-left-width: 4px;
-  border-radius: 8px;
-  background: rgba(var(--callout-color), 0.08);
+  border: 1px solid rgba(var(--callout-color), 0.25);
+  border-left-width: 3px;
+  border-radius: 3px;
+  background: rgba(var(--callout-color), 0.05);
 }
 
 .callout-title {
@@ -250,14 +240,14 @@ a.internal.broken {
 .callout[data-callout="success"],
 .callout[data-callout="check"],
 .callout[data-callout="done"] {
-  --callout-color: 15, 118, 110;
+  --callout-color: 107, 90, 53;
 }
 
 .callout[data-callout="warning"],
 .callout[data-callout="caution"],
 .callout[data-callout="attention"],
 .callout[data-callout="important"] {
-  --callout-color: 202, 138, 4;
+  --callout-color: 168, 121, 26;
 }
 
 .callout[data-callout="danger"],
@@ -266,30 +256,32 @@ a.internal.broken {
 .callout[data-callout="failure"],
 .callout[data-callout="fail"],
 .callout[data-callout="missing"] {
-  --callout-color: 220, 38, 38;
+  --callout-color: 158, 42, 26;
 }
 
 .page article table {
   width: 100%;
   max-width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface);
+  border-collapse: collapse;
+  overflow: visible;
+  border: 0;
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+  border-radius: 0;
+  background: transparent;
 }
 
 .page article table th,
 .page article table td {
-  padding: 0.7rem 0.85rem;
+  padding: 0.6rem 0.85rem;
   border-bottom: 1px solid var(--border);
 }
 
 .page article table th {
   color: var(--dark);
-  background: var(--surface-muted);
+  background: transparent;
   font-weight: 650;
+  text-align: left;
 }
 
 .page article table tr:last-child td {
@@ -332,8 +324,8 @@ a.internal.broken {
   background: var(--surface);
   color: var(--darkgray);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+  border-radius: 3px;
+  box-shadow: none;
 }
 
 .search .search-button:hover {
@@ -343,13 +335,13 @@ a.internal.broken {
 .search .search-space {
   background: transparent;
   color: var(--darkgray);
-  border-radius: 8px;
+  border-radius: 3px;
 }
 
 .search .search-space > * {
   background: var(--surface-elevated) !important;
   border-color: var(--border) !important;
-  box-shadow: var(--shadow-soft) !important;
+  box-shadow: none !important;
 }
 
 .explorer,
@@ -358,9 +350,9 @@ a.internal.broken {
 .backlinks {
   padding: 1rem;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--surface) 86%, transparent);
-  box-shadow: 0 12px 30px rgba(17, 24, 39, 0.04);
+  border-radius: 3px;
+  background: transparent;
+  box-shadow: none;
 }
 
 .explorer button,
@@ -385,19 +377,19 @@ a.internal.broken {
 
 .graph > .graph-outer {
   border-color: var(--border);
-  border-radius: 8px;
+  border-radius: 3px;
   background: var(--surface-muted);
 }
 
 .graph > .global-graph-outer {
-  background: rgba(15, 23, 42, 0.35);
+  background: rgba(28, 24, 17, 0.4);
 }
 
 .graph > .global-graph-outer > .global-graph-container {
   border-color: var(--border);
-  border-radius: 8px;
+  border-radius: 3px;
   background: var(--surface-elevated);
-  box-shadow: var(--shadow-soft);
+  box-shadow: none;
 }
 
 .backlinks a.internal {
@@ -413,9 +405,9 @@ a.internal.broken {
 
 .popover {
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 3px;
   background: var(--surface-elevated);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 8px 24px rgba(28, 24, 17, 0.12);
 }
 
 footer {
@@ -428,13 +420,13 @@ footer {
   }
 
   .page article > h1:first-child {
-    font-size: 2.35rem;
+    font-size: 2.25rem;
   }
 }
 
 @media all and (max-width: 800px) {
   body {
-    font-size: 15.5px;
+    font-size: 16px;
   }
 
   .page > #quartz-body .sidebar.left {
@@ -449,7 +441,7 @@ footer {
 
   .page article > h1:first-child {
     max-width: 100%;
-    font-size: 2rem;
+    font-size: 1.95rem;
   }
 
   .explorer,
