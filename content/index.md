@@ -1,17 +1,17 @@
 ---
 title: Devansh Mahajan
-description: Electrical Engineering and Computer Science student at ETH Zurich, building a public knowledge base across circuits, systems, mathematics, and software.
+description: Building a public knowledge base across circuits, systems, mathematics, and software.
 ---
 
 # Devansh Mahajan
 
-I study Electrical Engineering and Computer Science at ETH Zurich and use this space to make my working notes more rigorous, searchable, and useful. The site collects coursework, mathematical problem solving, circuits, systems, and technical projects as they develop.
+I use this space to make my working notes more rigorous, searchable, and useful. The site collects coursework, mathematical problem solving, circuits, systems, and technical projects as they develop.
 
 ## Current Focus
 
-### [[200 ETH Zurich/ETH BSc EECS - Overview|ETH Zurich EECS]]
+### [[200 Study Notes/Course Overview|Course Notes]]
 
-Course notes, summaries, and technical references from my Electrical Engineering and Computer Science studies.
+Course notes, summaries, and technical references from my studies.
 
 ### [[300 IMO + Putnam/Solving Mathematical Problems -Terence Tao|Mathematical Problem Solving]]
 

@@ -12,7 +12,7 @@ const PageTitle: QuartzComponent = ({ fileData, cfg, displayClass }: QuartzCompo
         <span class="site-mark">DM</span>
         <span class="site-wordmark">
           <span>{title}</span>
-          <small>ETH Zurich / EECS</small>
+          <small>Notes & Projects</small>
         </span>
       </a>
     </h2>
